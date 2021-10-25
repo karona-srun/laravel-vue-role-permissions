@@ -17,9 +17,6 @@ Route::get('{any}', function () {
     return view('layouts.vue');
 })->where('any', '.*');
 
-Route::post('social/{provider}', 'AuthController@social');
-
-
 Route::get('/', function () {
     return view('welcome');
 });
