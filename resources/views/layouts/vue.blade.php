@@ -6,6 +6,8 @@
     <meta name="csrf-token" value="{{ csrf_token() }}"/>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/favicon.png">
     <title>Roast</title>
 </head>
