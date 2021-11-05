@@ -3,41 +3,124 @@ import VueRouter from 'vue-router';
 
 import SignIn from '../views/auth/SignIn.vue';
 import SignUp from '../views/auth/SignUp.vue';
-import Index from '../views/Index.vue'
+import Layout from '../views/Layout.vue'
+import Home from '../views/Home.vue';
+import LayoutAdmin from '../views/LayoutAdmin.vue';
 import Dashboard from '../views/Dashboard.vue';
+
+import UserList from '../views/users/Index.vue';
+import CreateUser from '../views/users/Create.vue';
+import EditUser from '../views/users/Edit.vue';
+
+import RoleList from '../views/roles/Index.vue';
+import CreateRole from '../views/roles/Create.vue';
+import EditRole from '../views/roles/Edit.vue';
+import ShowRole from '../views/roles/Show.vue';
+
+import ShowUser from '../views/users/Show.vue';
 import NotAuthorized from '../views/NotAuthorized.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
     {
-        name: 'Home',
         path: '/',
-        component: Index
+        component: Layout,
+        children: [
+        {
+            name: 'Home',
+            path: '/',
+            component: Home,
+            meta: {
+                guest: true
+            }
+        },
+        {
+            name: 'SignIn',
+            path: '/sign-in',
+            component: SignIn,
+            meta: {
+                guest: true
+            }
+        },
+        {
+            name: 'SignUp',
+            path: '/sign-up',
+            component: SignUp,
+            meta: {
+                guest: true
+            }
+        }]
     },
     {
-        name: 'SignIn',
-        path: '/sign-in',
-        component: SignIn,
-        meta: {
-            guest: true
-        }
-    },
-    {
-        name: 'SignUp',
-        path: '/sign-up',
-        component: SignUp,
-        meta: {
-            guest: true
-        }
-    },
-    {
-        name: 'Dashboard',
         path: '/dashboard',
-        component: Dashboard,
-        meta: {
-            requiresAuth: true
-        }
+        component: LayoutAdmin,
+        children: [
+            {
+                path: '/',
+                name: 'Dashboard',
+                component: Dashboard,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: '/users',
+                component: UserList,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: '/create-user',
+                component: CreateUser,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: '/users/edit-user/:id',
+                component: EditUser,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: '/users/user-detail/:id',
+                component: ShowUser,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: '/roles',
+                component: RoleList,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: '/create-role',
+                component: CreateRole,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: '/role/edit-role/:id',
+                component: EditRole,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: '/show-role/:id',
+                component: ShowRole,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+        ]
     },
     {
         path: '*',

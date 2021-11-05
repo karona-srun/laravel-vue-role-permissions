@@ -10,6 +10,7 @@ import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
 import locale from 'view-design/dist/locale/en-US';
 
+Vue.config.productionTip = true;
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(ViewUI,
@@ -20,7 +21,7 @@ Vue.use(ViewUI,
     capture: false,
     select: {
         arrow: 'md-arrow-dropdown',
-        arrowSize: 20
+        arrowSize: 22
     }
 });
 

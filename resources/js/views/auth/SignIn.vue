@@ -72,19 +72,20 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Message.success({
-            background: true,
-            content: "Success!",
-          });
+          this.$Notice.success({
+                title: 'Notification Success!',
+                desc: 'Success!'
+            });
             localStorage.signedIn = true;
             localStorage.setItem('user',JSON.stringify(this.formInline))
             localStorage.setItem('jwt',this.formInline)
             this.$router.push('/dashboard')
         } else {
-            this.$Message.error({
-                background: true,
-                content: "Fail!",
+            this.$Notice.error({
+                title: 'Notification Fail!',
+                desc: 'Please try again!'
             });
+
             localStorage.signedIn = false;
         }
       });
