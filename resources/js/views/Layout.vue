@@ -3,7 +3,9 @@
     <Layout :style="{ minHeight: '100vh' }">
       <Header :style="{ background: '#fff', position: 'fixed', width: '100%' }">
         <Menu mode="horizontal" width="auto" theme="light" active-name="1">
-          <div class="layout-logo"></div>
+          <div class="layout-logo" @click.prevent="homePage">
+            <img src="favicon.png" alt="logo" width="30px" height="30px" style="margin-top:-32px;width: 100px;">
+          </div>
           <div class="layout-nav">
             <MenuItem name="2" to="sign-up">
               <Icon type="ios-person-add-outline" size="20" />
@@ -25,10 +27,7 @@
         }"
       >
         <h1 class="text-center mb-3">Welcome to home page</h1>
-        <Button @click="instance('info')">Info</Button>
-        <Button @click="instance('success')">Success</Button>
-        <Button @click="instance('warning')">Warning</Button>
-        <Button @click="instance('error')">Error</Button>
+        <router-view> </router-view>
       </Content>
       <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
     </Layout>
@@ -37,35 +36,8 @@
 <script>
 export default {
   methods: {
-    instance(type) {
-      const title = "Title Modal";
-      const content = "<p>Modal dialog. It's shown in the floating layer. It's used to guide user to do certain operations.Modal provides two usages: normal component using & encapsulated instance calling.</p>";
-      switch (type) {
-        case "info":
-          this.$Modal.info({
-            title: title,
-            content: content,
-          });
-          break;
-        case "success":
-          this.$Modal.success({
-            title: title,
-            content: content,
-          });
-          break;
-        case "warning":
-          this.$Modal.warning({
-            title: title,
-            content: content,
-          });
-          break;
-        case "error":
-          this.$Modal.error({
-            title: title,
-            content: content,
-          });
-          break;
-      }
+    homePage(){
+      this.$router.push('/');
     },
   },
 };
