@@ -5249,6 +5249,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {};
@@ -6348,11 +6379,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      file: null,
+      url: null,
+      loadingStatus: false,
       formValidate: {
-        name: "",
+        firstname: "",
+        lastname: "",
         mail: "",
         city: "",
         gender: "",
@@ -6362,9 +6441,14 @@ __webpack_require__.r(__webpack_exports__);
         desc: ""
       },
       ruleValidate: {
-        name: [{
+        firstname: [{
           required: true,
-          message: "The name cannot be empty",
+          message: "The first name cannot be empty",
+          trigger: "blur"
+        }],
+        lastname: [{
+          required: true,
+          message: "The last name cannot be empty",
           trigger: "blur"
         }],
         mail: [{
@@ -6437,6 +6521,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleReset: function handleReset(name) {
       this.$refs[name].resetFields();
+    },
+    handleUpload: function handleUpload(file) {
+      this.file = file;
+      this.url = URL.createObjectURL(file);
+      this.loadingStatus = true;
+      return false;
     }
   }
 });
@@ -6525,11 +6615,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      file: null,
+      url: null,
+      loadingStatus: false,
       formValidate: {
-        name: "",
+        firstname: "",
+        lastname: "",
         mail: "",
         city: "",
         gender: "",
@@ -6539,9 +6677,14 @@ __webpack_require__.r(__webpack_exports__);
         desc: ""
       },
       ruleValidate: {
-        name: [{
+        firstname: [{
           required: true,
-          message: "The name cannot be empty",
+          message: "The first name cannot be empty",
+          trigger: "blur"
+        }],
+        lastname: [{
+          required: true,
+          message: "The last name cannot be empty",
           trigger: "blur"
         }],
         mail: [{
@@ -6614,6 +6757,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleReset: function handleReset(name) {
       this.$refs[name].resetFields();
+    },
+    handleUpload: function handleUpload(file) {
+      this.file = file;
+      this.url = URL.createObjectURL(file);
+      this.loadingStatus = true;
+      return false;
     }
   }
 });
@@ -6887,11 +7036,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      file: null,
+      url: null,
+      loadingStatus: false,
       formValidate: {
-        name: "",
+        firstname: "",
+        lastname: "",
         mail: "",
         city: "",
         gender: "",
@@ -6901,9 +7095,14 @@ __webpack_require__.r(__webpack_exports__);
         desc: ""
       },
       ruleValidate: {
-        name: [{
+        firstname: [{
           required: true,
-          message: "The name cannot be empty",
+          message: "The first name cannot be empty",
+          trigger: "blur"
+        }],
+        lastname: [{
+          required: true,
+          message: "The last name cannot be empty",
           trigger: "blur"
         }],
         mail: [{
@@ -6976,6 +7175,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleReset: function handleReset(name) {
       this.$refs[name].resetFields();
+    },
+    handleUpload: function handleUpload(file) {
+      this.file = file;
+      this.url = URL.createObjectURL(file);
+      this.loadingStatus = true;
+      return false;
     }
   }
 });
@@ -12301,7 +12506,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.layout[data-v-6350f776] {\n  /* border: 1px solid #d7dde4; */\n  background: #f5f7f9;\n  position: relative;\n  /* border-radius: 4px; */\n  overflow: hidden;\n}\n.layout-header-bar[data-v-6350f776] {\n  background: #fff;\n  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);\n}\n.layout-logo-left[data-v-6350f776] {\n  width: 90%;\n  height: 30px;\n  background: #fff;\n  border-radius: 3px;\n  margin: 15px auto;\n}\n.ivu-layout-header[data-v-6350f776] {\n  height: 52px !important;\n  line-height: 3.8;\n}\n.ivu-layout-sider[data-v-6350f776] {\n  background: #ffffff !important;\n}\n.float-right[data-v-6350f776]{\n  float: right;\n  padding-right: 20px;\n}\n.menu-icon[data-v-6350f776] {\n  transition: all 0.3s;\n}\n.rotate-icon[data-v-6350f776] {\n  transform: rotate(-90deg);\n}\n.menu-item span[data-v-6350f776] {\n  display: inline-block;\n  overflow: hidden;\n  width: 69px;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  vertical-align: bottom;\n  transition: width 0.2s ease 0.2s;\n}\n.menu-item i[data-v-6350f776] {\n  transform: translateX(0px);\n  transition: font-size 0.2s ease, transform 0.2s ease;\n  vertical-align: middle;\n  font-size: 16px;\n}\n.collapsed-menu span[data-v-6350f776] {\n  width: 0px;\n  transition: width 0.2s ease;\n}\n.collapsed-menu i[data-v-6350f776] {\n  transform: translateX(5px);\n  transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;\n  vertical-align: middle;\n  font-size: 22px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.layout[data-v-6350f776] {\n  /* border: 1px solid #d7dde4; */\n  background: #f5f7f9;\n  position: relative;\n  /* border-radius: 4px; */\n  overflow: hidden;\n}\n.layout-header-bar[data-v-6350f776] {\n  background: #2d8cf0;\n  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);\n  color: #fff;\n}\n.layout-logo-left[data-v-6350f776] {\n  width: 90%;\n  height: 30px;\n  background: #fff;\n  border-radius: 3px;\n  margin: 15px auto;\n}\n.ivu-layout-header[data-v-6350f776] {\n  height: 52px !important;\n  line-height: 3.8;\n}\n.ivu-layout-sider[data-v-6350f776] {\n  background: #ffffff !important;\n}\n.float-right[data-v-6350f776]{\n  float: right;\n  padding-right: 20px;\n}\n.menu-icon[data-v-6350f776] {\n  transition: all 0.3s;\n}\n.rotate-icon[data-v-6350f776] {\n  transform: rotate(-90deg);\n}\n.menu-item span[data-v-6350f776] {\n  display: inline-block;\n  overflow: hidden;\n  width: 69px;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  vertical-align: bottom;\n  transition: width 0.2s ease 0.2s;\n}\n.menu-item i[data-v-6350f776] {\n  transform: translateX(0px);\n  transition: font-size 0.2s ease, transform 0.2s ease;\n  vertical-align: middle;\n  font-size: 16px;\n}\n.collapsed-menu span[data-v-6350f776] {\n  width: 0px;\n  transition: width 0.2s ease;\n}\n.collapsed-menu i[data-v-6350f776] {\n  transform: translateX(5px);\n  transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;\n  vertical-align: middle;\n  font-size: 22px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -60431,7 +60636,83 @@ var render = function() {
           }
         },
         [
-          _c("Col", { attrs: { span: "8" } }, [_c("h6", [_vm._v("Dashboard")])])
+          _c("Col", { attrs: { span: "8" } }, [
+            _c("h6", [_vm._v("Dashboard")])
+          ]),
+          _vm._v(" "),
+          _c("br")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "Row",
+        {
+          style: {
+            padding: "10px 20px",
+            background: "#fff"
+          }
+        },
+        [
+          _c(
+            "Col",
+            {
+              style: {
+                padding: "10px"
+              }
+            },
+            [
+              _c("Card", [
+                _c(
+                  "div",
+                  { staticStyle: { "text-align": "center" } },
+                  [
+                    _c("img", { attrs: { src: "" } }),
+                    _vm._v(" "),
+                    _c("h3", [_vm._v("0")]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("Users Management")]),
+                    _vm._v(" "),
+                    _c("Button", { attrs: { type: "info", to: "users" } }, [
+                      _vm._v("More Information")
+                    ])
+                  ],
+                  1
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "Col",
+            {
+              style: {
+                padding: "10px"
+              }
+            },
+            [
+              _c("Card", [
+                _c(
+                  "div",
+                  { staticStyle: { "text-align": "center" } },
+                  [
+                    _c("img", { attrs: { src: "" } }),
+                    _vm._v(" "),
+                    _c("h3", [_vm._v("0")]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("Roles Management")]),
+                    _vm._v(" "),
+                    _c("Button", { attrs: { type: "info", to: "roles" } }, [
+                      _vm._v("More Information")
+                    ])
+                  ],
+                  1
+                )
+              ])
+            ],
+            1
+          )
         ],
         1
       )
@@ -60931,7 +61212,7 @@ var render = function() {
                       _c(
                         "a",
                         {
-                          style: { color: "#515a6e" },
+                          style: { color: "#fff" },
                           attrs: { href: "javascript:void(0)" }
                         },
                         [
@@ -62034,128 +62315,200 @@ var render = function() {
             margin: "20px 0 0 0",
             padding: "30px 20px",
             background: "#fff"
-          }
+          },
+          attrs: { gutter: 32 }
         },
         [
+          _c("Col", { attrs: { sm: 32, md: 6, lg: 6 } }, [
+            _c(
+              "div",
+              [
+                _c(
+                  "Upload",
+                  { attrs: { "before-upload": _vm.handleUpload, action: "" } },
+                  [
+                    !_vm.loadingStatus
+                      ? _c("div", {
+                          style: {
+                            width: "150px",
+                            height: "150px",
+                            border: "2px dashed rgb(0 0 0)",
+                            "border-radius": "5px",
+                            "object-fit": "cover",
+                            "background-size": "cover",
+                            "background-image":
+                              "url(https://static.thenounproject.com/png/187803-200.png)"
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.file !== null
+                      ? _c("div", { staticClass: "text-break" }, [
+                          _c("div", {
+                            style: {
+                              width: "150px",
+                              height: "150px",
+                              "border-radius": "5px",
+                              "background-size": "100%",
+                              "object-fit": "cover",
+                              "background-size": "cover",
+                              "box-shadow": "5px 5px 5px",
+                              "background-image": "url(" + _vm.url + ")"
+                            }
+                          })
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
           _c(
-            "Form",
-            {
-              ref: "formValidate",
-              staticStyle: { width: "100%" },
-              attrs: {
-                model: _vm.formValidate,
-                rules: _vm.ruleValidate,
-                "label-width": 100
-              }
-            },
+            "Col",
+            { attrs: { sm: 32, md: 18, lg: 18 } },
             [
               _c(
-                "FormItem",
-                { attrs: { label: "FullName", prop: "name" } },
-                [
-                  _c("Input", {
-                    attrs: { placeholder: "Enter your name" },
-                    model: {
-                      value: _vm.formValidate.name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formValidate, "name", $$v)
-                      },
-                      expression: "formValidate.name"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
-                { attrs: { label: "E-mail", prop: "mail" } },
-                [
-                  _c("Input", {
-                    attrs: { placeholder: "Enter your e-mail" },
-                    model: {
-                      value: _vm.formValidate.mail,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formValidate, "mail", $$v)
-                      },
-                      expression: "formValidate.mail"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
-                { attrs: { label: "Content", prop: "content" } },
-                [
-                  _c("Input", {
-                    attrs: {
-                      type: "textarea",
-                      autosize: { minRows: 2, maxRows: 5 },
-                      placeholder: "Enter something..."
-                    },
-                    model: {
-                      value: _vm.formValidate.content,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formValidate, "content", $$v)
-                      },
-                      expression: "formValidate.content"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
-                { attrs: { label: "Desc", prop: "desc" } },
-                [
-                  _c("Input", {
-                    attrs: {
-                      type: "textarea",
-                      autosize: { minRows: 2, maxRows: 5 },
-                      placeholder: "Enter something..."
-                    },
-                    model: {
-                      value: _vm.formValidate.desc,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formValidate, "desc", $$v)
-                      },
-                      expression: "formValidate.desc"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
+                "Form",
+                {
+                  ref: "formValidate",
+                  staticStyle: { width: "100%" },
+                  attrs: {
+                    model: _vm.formValidate,
+                    rules: _vm.ruleValidate,
+                    "label-width": 100
+                  }
+                },
                 [
                   _c(
-                    "Button",
-                    {
-                      attrs: { type: "primary" },
-                      on: {
-                        click: function($event) {
-                          return _vm.handleSubmit("formValidate")
+                    "FormItem",
+                    { attrs: { label: "First Name", prop: "firstname" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "Enter your first name" },
+                        model: {
+                          value: _vm.formValidate.firstname,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "firstname", $$v)
+                          },
+                          expression: "formValidate.firstname"
                         }
-                      }
-                    },
-                    [_vm._v("Submit")]
+                      })
+                    ],
+                    1
                   ),
                   _vm._v(" "),
                   _c(
-                    "Button",
-                    {
-                      staticStyle: { "margin-left": "8px" },
-                      on: {
-                        click: function($event) {
-                          return _vm.handleReset("formValidate")
+                    "FormItem",
+                    { attrs: { label: "Last Name", prop: "lastname" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "Enter your last name" },
+                        model: {
+                          value: _vm.formValidate.lastname,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "lastname", $$v)
+                          },
+                          expression: "formValidate.lastname"
                         }
-                      }
-                    },
-                    [_vm._v("Reset")]
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "E-mail", prop: "mail" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "Enter your e-mail" },
+                        model: {
+                          value: _vm.formValidate.mail,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "mail", $$v)
+                          },
+                          expression: "formValidate.mail"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "Content", prop: "content" } },
+                    [
+                      _c("Input", {
+                        attrs: {
+                          type: "textarea",
+                          autosize: { minRows: 2, maxRows: 5 },
+                          placeholder: "Enter something..."
+                        },
+                        model: {
+                          value: _vm.formValidate.content,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "content", $$v)
+                          },
+                          expression: "formValidate.content"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "Desc", prop: "desc" } },
+                    [
+                      _c("Input", {
+                        attrs: {
+                          type: "textarea",
+                          autosize: { minRows: 2, maxRows: 5 },
+                          placeholder: "Enter something..."
+                        },
+                        model: {
+                          value: _vm.formValidate.desc,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "desc", $$v)
+                          },
+                          expression: "formValidate.desc"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormItem",
+                    [
+                      _c(
+                        "Button",
+                        {
+                          attrs: { type: "primary" },
+                          on: {
+                            click: function($event) {
+                              return _vm.handleSubmit("formValidate")
+                            }
+                          }
+                        },
+                        [_vm._v("Submit")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "Button",
+                        {
+                          staticStyle: { "margin-left": "8px" },
+                          on: {
+                            click: function($event) {
+                              return _vm.handleReset("formValidate")
+                            }
+                          }
+                        },
+                        [_vm._v("Reset")]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
@@ -62246,128 +62599,200 @@ var render = function() {
             margin: "20px 0 0 0",
             padding: "30px 20px",
             background: "#fff"
-          }
+          },
+          attrs: { gutter: 32 }
         },
         [
+          _c("Col", { attrs: { sm: 32, md: 6, lg: 6 } }, [
+            _c(
+              "div",
+              [
+                _c(
+                  "Upload",
+                  { attrs: { "before-upload": _vm.handleUpload, action: "" } },
+                  [
+                    !_vm.loadingStatus
+                      ? _c("div", {
+                          style: {
+                            width: "150px",
+                            height: "150px",
+                            border: "2px dashed rgb(0 0 0)",
+                            "border-radius": "5px",
+                            "object-fit": "cover",
+                            "background-size": "cover",
+                            "background-image":
+                              "url(https://static.thenounproject.com/png/187803-200.png)"
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.file !== null
+                      ? _c("div", { staticClass: "text-break" }, [
+                          _c("div", {
+                            style: {
+                              width: "150px",
+                              height: "150px",
+                              "border-radius": "5px",
+                              "background-size": "100%",
+                              "object-fit": "cover",
+                              "background-size": "cover",
+                              "box-shadow": "5px 5px 5px",
+                              "background-image": "url(" + _vm.url + ")"
+                            }
+                          })
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
           _c(
-            "Form",
-            {
-              ref: "formValidate",
-              staticStyle: { width: "100%" },
-              attrs: {
-                model: _vm.formValidate,
-                rules: _vm.ruleValidate,
-                "label-width": 100
-              }
-            },
+            "Col",
+            { attrs: { sm: 32, md: 18, lg: 18 } },
             [
               _c(
-                "FormItem",
-                { attrs: { label: "FullName", prop: "name" } },
-                [
-                  _c("Input", {
-                    attrs: { placeholder: "Enter your name" },
-                    model: {
-                      value: _vm.formValidate.name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formValidate, "name", $$v)
-                      },
-                      expression: "formValidate.name"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
-                { attrs: { label: "E-mail", prop: "mail" } },
-                [
-                  _c("Input", {
-                    attrs: { placeholder: "Enter your e-mail" },
-                    model: {
-                      value: _vm.formValidate.mail,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formValidate, "mail", $$v)
-                      },
-                      expression: "formValidate.mail"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
-                { attrs: { label: "Content", prop: "content" } },
-                [
-                  _c("Input", {
-                    attrs: {
-                      type: "textarea",
-                      autosize: { minRows: 2, maxRows: 5 },
-                      placeholder: "Enter something..."
-                    },
-                    model: {
-                      value: _vm.formValidate.content,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formValidate, "content", $$v)
-                      },
-                      expression: "formValidate.content"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
-                { attrs: { label: "Desc", prop: "desc" } },
-                [
-                  _c("Input", {
-                    attrs: {
-                      type: "textarea",
-                      autosize: { minRows: 2, maxRows: 5 },
-                      placeholder: "Enter something..."
-                    },
-                    model: {
-                      value: _vm.formValidate.desc,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formValidate, "desc", $$v)
-                      },
-                      expression: "formValidate.desc"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
+                "Form",
+                {
+                  ref: "formValidate",
+                  staticStyle: { width: "100%" },
+                  attrs: {
+                    model: _vm.formValidate,
+                    rules: _vm.ruleValidate,
+                    "label-width": 100
+                  }
+                },
                 [
                   _c(
-                    "Button",
-                    {
-                      attrs: { type: "primary" },
-                      on: {
-                        click: function($event) {
-                          return _vm.handleSubmit("formValidate")
+                    "FormItem",
+                    { attrs: { label: "First Name", prop: "firstname" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "Enter your first name" },
+                        model: {
+                          value: _vm.formValidate.firstname,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "firstname", $$v)
+                          },
+                          expression: "formValidate.firstname"
                         }
-                      }
-                    },
-                    [_vm._v("Submit")]
+                      })
+                    ],
+                    1
                   ),
                   _vm._v(" "),
                   _c(
-                    "Button",
-                    {
-                      staticStyle: { "margin-left": "8px" },
-                      on: {
-                        click: function($event) {
-                          return _vm.handleReset("formValidate")
+                    "FormItem",
+                    { attrs: { label: "Last Name", prop: "lastname" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "Enter your last name" },
+                        model: {
+                          value: _vm.formValidate.lastname,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "lastname", $$v)
+                          },
+                          expression: "formValidate.lastname"
                         }
-                      }
-                    },
-                    [_vm._v("Reset")]
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "E-mail", prop: "mail" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "Enter your e-mail" },
+                        model: {
+                          value: _vm.formValidate.mail,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "mail", $$v)
+                          },
+                          expression: "formValidate.mail"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "Content", prop: "content" } },
+                    [
+                      _c("Input", {
+                        attrs: {
+                          type: "textarea",
+                          autosize: { minRows: 2, maxRows: 5 },
+                          placeholder: "Enter something..."
+                        },
+                        model: {
+                          value: _vm.formValidate.content,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "content", $$v)
+                          },
+                          expression: "formValidate.content"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "Desc", prop: "desc" } },
+                    [
+                      _c("Input", {
+                        attrs: {
+                          type: "textarea",
+                          autosize: { minRows: 2, maxRows: 5 },
+                          placeholder: "Enter something..."
+                        },
+                        model: {
+                          value: _vm.formValidate.desc,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "desc", $$v)
+                          },
+                          expression: "formValidate.desc"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormItem",
+                    [
+                      _c(
+                        "Button",
+                        {
+                          attrs: { type: "primary" },
+                          on: {
+                            click: function($event) {
+                              return _vm.handleSubmit("formValidate")
+                            }
+                          }
+                        },
+                        [_vm._v("Submit")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "Button",
+                        {
+                          staticStyle: { "margin-left": "8px" },
+                          on: {
+                            click: function($event) {
+                              return _vm.handleReset("formValidate")
+                            }
+                          }
+                        },
+                        [_vm._v("Reset")]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
@@ -62824,7 +63249,7 @@ var render = function() {
               "h6",
               [
                 _c("Icon", { attrs: { type: "ios-contacts", size: "22" } }),
-                _vm._v(" User Details")
+                _vm._v(" Show The User")
               ],
               1
             )
@@ -62834,21 +63259,6 @@ var render = function() {
             "Col",
             { attrs: { span: "8", offset: "8" } },
             [
-              _c(
-                "Button",
-                {
-                  style: { float: "right", margin: "0 0 0 10px" },
-                  attrs: { type: "warning", to: "/users/edit-user/2" }
-                },
-                [
-                  _c("Icon", {
-                    attrs: { type: "ios-create-outline", size: "20" }
-                  }),
-                  _vm._v("Edit\n      ")
-                ],
-                1
-              ),
-              _vm._v(" "),
               _c(
                 "Button",
                 {
@@ -62875,128 +63285,200 @@ var render = function() {
             margin: "20px 0 0 0",
             padding: "30px 20px",
             background: "#fff"
-          }
+          },
+          attrs: { gutter: 32 }
         },
         [
+          _c("Col", { attrs: { sm: 32, md: 6, lg: 6 } }, [
+            _c(
+              "div",
+              [
+                _c(
+                  "Upload",
+                  { attrs: { "before-upload": _vm.handleUpload, action: "" } },
+                  [
+                    !_vm.loadingStatus
+                      ? _c("div", {
+                          style: {
+                            width: "150px",
+                            height: "150px",
+                            border: "2px dashed rgb(0 0 0)",
+                            "border-radius": "5px",
+                            "object-fit": "cover",
+                            "background-size": "cover",
+                            "background-image":
+                              "url(https://static.thenounproject.com/png/187803-200.png)"
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.file !== null
+                      ? _c("div", { staticClass: "text-break" }, [
+                          _c("div", {
+                            style: {
+                              width: "150px",
+                              height: "150px",
+                              "border-radius": "5px",
+                              "background-size": "100%",
+                              "object-fit": "cover",
+                              "background-size": "cover",
+                              "box-shadow": "5px 5px 5px",
+                              "background-image": "url(" + _vm.url + ")"
+                            }
+                          })
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
           _c(
-            "Form",
-            {
-              ref: "formValidate",
-              staticStyle: { width: "100%" },
-              attrs: {
-                model: _vm.formValidate,
-                rules: _vm.ruleValidate,
-                "label-width": 100
-              }
-            },
+            "Col",
+            { attrs: { sm: 32, md: 18, lg: 18 } },
             [
               _c(
-                "FormItem",
-                { attrs: { label: "FullName", prop: "name" } },
-                [
-                  _c("Input", {
-                    attrs: { placeholder: "Enter your name" },
-                    model: {
-                      value: _vm.formValidate.name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formValidate, "name", $$v)
-                      },
-                      expression: "formValidate.name"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
-                { attrs: { label: "E-mail", prop: "mail" } },
-                [
-                  _c("Input", {
-                    attrs: { placeholder: "Enter your e-mail" },
-                    model: {
-                      value: _vm.formValidate.mail,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formValidate, "mail", $$v)
-                      },
-                      expression: "formValidate.mail"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
-                { attrs: { label: "Content", prop: "content" } },
-                [
-                  _c("Input", {
-                    attrs: {
-                      type: "textarea",
-                      autosize: { minRows: 2, maxRows: 5 },
-                      placeholder: "Enter something..."
-                    },
-                    model: {
-                      value: _vm.formValidate.content,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formValidate, "content", $$v)
-                      },
-                      expression: "formValidate.content"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
-                { attrs: { label: "Desc", prop: "desc" } },
-                [
-                  _c("Input", {
-                    attrs: {
-                      type: "textarea",
-                      autosize: { minRows: 2, maxRows: 5 },
-                      placeholder: "Enter something..."
-                    },
-                    model: {
-                      value: _vm.formValidate.desc,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formValidate, "desc", $$v)
-                      },
-                      expression: "formValidate.desc"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "FormItem",
+                "Form",
+                {
+                  ref: "formValidate",
+                  staticStyle: { width: "100%" },
+                  attrs: {
+                    model: _vm.formValidate,
+                    rules: _vm.ruleValidate,
+                    "label-width": 100
+                  }
+                },
                 [
                   _c(
-                    "Button",
-                    {
-                      attrs: { type: "primary" },
-                      on: {
-                        click: function($event) {
-                          return _vm.handleSubmit("formValidate")
+                    "FormItem",
+                    { attrs: { label: "First Name", prop: "firstname" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "Enter your first name" },
+                        model: {
+                          value: _vm.formValidate.firstname,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "firstname", $$v)
+                          },
+                          expression: "formValidate.firstname"
                         }
-                      }
-                    },
-                    [_vm._v("Submit")]
+                      })
+                    ],
+                    1
                   ),
                   _vm._v(" "),
                   _c(
-                    "Button",
-                    {
-                      staticStyle: { "margin-left": "8px" },
-                      on: {
-                        click: function($event) {
-                          return _vm.handleReset("formValidate")
+                    "FormItem",
+                    { attrs: { label: "Last Name", prop: "lastname" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "Enter your last name" },
+                        model: {
+                          value: _vm.formValidate.lastname,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "lastname", $$v)
+                          },
+                          expression: "formValidate.lastname"
                         }
-                      }
-                    },
-                    [_vm._v("Reset")]
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "E-mail", prop: "mail" } },
+                    [
+                      _c("Input", {
+                        attrs: { placeholder: "Enter your e-mail" },
+                        model: {
+                          value: _vm.formValidate.mail,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "mail", $$v)
+                          },
+                          expression: "formValidate.mail"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "Content", prop: "content" } },
+                    [
+                      _c("Input", {
+                        attrs: {
+                          type: "textarea",
+                          autosize: { minRows: 2, maxRows: 5 },
+                          placeholder: "Enter something..."
+                        },
+                        model: {
+                          value: _vm.formValidate.content,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "content", $$v)
+                          },
+                          expression: "formValidate.content"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormItem",
+                    { attrs: { label: "Desc", prop: "desc" } },
+                    [
+                      _c("Input", {
+                        attrs: {
+                          type: "textarea",
+                          autosize: { minRows: 2, maxRows: 5 },
+                          placeholder: "Enter something..."
+                        },
+                        model: {
+                          value: _vm.formValidate.desc,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formValidate, "desc", $$v)
+                          },
+                          expression: "formValidate.desc"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "FormItem",
+                    [
+                      _c(
+                        "Button",
+                        {
+                          attrs: { type: "primary" },
+                          on: {
+                            click: function($event) {
+                              return _vm.handleSubmit("formValidate")
+                            }
+                          }
+                        },
+                        [_vm._v("Submit")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "Button",
+                        {
+                          staticStyle: { "margin-left": "8px" },
+                          on: {
+                            click: function($event) {
+                              return _vm.handleReset("formValidate")
+                            }
+                          }
+                        },
+                        [_vm._v("Reset")]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1

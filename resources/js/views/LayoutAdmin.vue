@@ -55,7 +55,7 @@
             size="20"
           ></Icon>
           <Dropdown trigger="click" class="float-right" style="margin-left: 20px">
-            <a href="javascript:void(0)" :style="{color:'#515a6e'}">
+            <a href="javascript:void(0)" :style="{color:'#fff'}">
                 <Icon type="ios-cog-outline" size="20" />
                 Username
                 <Icon type="ios-arrow-down"></Icon>
@@ -131,8 +131,9 @@ export default {
   overflow: hidden;
 }
 .layout-header-bar {
-  background: #fff;
+  background: #2d8cf0;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  color: #fff;
 }
 .layout-logo-left {
   width: 90%;
