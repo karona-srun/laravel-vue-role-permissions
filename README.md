@@ -10,6 +10,21 @@
 ## IVIEW (VUE UI Framework) 
 - [IVIEW UI](https://www.iviewui.com/components/message-en)
 
+### Installing
+~~~
+composer update
+~~~
+
+### Optimize Project
+~~~
+php artisan optimize
+~~~
+
+### Generate JWT Key
+~~~
+php artisan jwt:secret
+~~~
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
