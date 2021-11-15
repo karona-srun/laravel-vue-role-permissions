@@ -1,7 +1,7 @@
 <template>
   <Row justify="center">
     <Col span="6">
-      <Divider>SignIn Account</Divider>
+      <Divider>New Password</Divider>
       <Form ref="formInline" :model="formInline" :rules="ruleInline">
         <FormItem prop="email">
           <Input
@@ -23,10 +23,10 @@
           >
           </Input>
         </FormItem>
-        <Button type="text" class="text-break" :style="{ margin:'0px 0px 0px -15px' }" to="/reset-password">Forgot Your Password ?</Button>
+        <Button type="text" class="text-break" :style="{ margin:'0px 0px 0px -15px' }" to="/forgot-password">Forgot Your Password ?</Button>
         <FormItem>
           <Button type="primary" long @click="handleSubmit('formInline')"
-            >Signin</Button
+            >Update Password</Button>
           >
           <Divider plain>Or</Divider>
           <Button type="primary" long @click="handleGoBack"

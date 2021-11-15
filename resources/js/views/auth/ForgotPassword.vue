@@ -1,7 +1,7 @@
 <template>
   <Row justify="center">
     <Col span="6">
-      <Divider>SignIn Account</Divider>
+      <Divider>Reset Password</Divider>
       <Form ref="formInline" :model="formInline" :rules="ruleInline">
         <FormItem prop="email">
           <Input
@@ -13,20 +13,9 @@
           >
           </Input>
         </FormItem>
-        <FormItem prop="password">
-          <Input
-            type="password"
-            password
-            prefix="ios-lock-outline"
-            v-model="formInline.password"
-            placeholder="Password"
-          >
-          </Input>
-        </FormItem>
-        <Button type="text" class="text-break" :style="{ margin:'0px 0px 0px -15px' }" to="/reset-password">Forgot Your Password ?</Button>
         <FormItem>
           <Button type="primary" long @click="handleSubmit('formInline')"
-            >Signin</Button
+            >Send Password Reset Link</Button
           >
           <Divider plain>Or</Divider>
           <Button type="primary" long @click="handleGoBack"
@@ -43,26 +32,12 @@ export default {
     return {
       formInline: {
         email: "",
-        password: "",
       },
       ruleInline: {
         email: [
           {
             required: true,
             message: "Please fill in the email address",
-            trigger: "blur",
-          },
-        ],
-        password: [
-          {
-            required: true,
-            message: "Please fill in the password.",
-            trigger: "blur",
-          },
-          {
-            type: "string",
-            min: 6,
-            message: "The password length cannot be less than 6 bits",
             trigger: "blur",
           },
         ],

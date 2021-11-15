@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -116,4 +120,27 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
     }
+
+    /**
+     * Handle reset password 
+     */
+    public function callResetPassword(Request $request)
+    {
+        return $this->reset($request);
+    }
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @param  string  $password
+     * @return void
+     */
+    protected function resetPassword($user, $password)
+    {
+        $user->password = Hash::make($password);
+        $user->save;
+
+        event(new PasswordReset($user));
+    }
+
 }

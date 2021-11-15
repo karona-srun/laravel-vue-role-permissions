@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 
 import SignIn from '../views/auth/SignIn.vue';
 import SignUp from '../views/auth/SignUp.vue';
+import ForgotPassword from '../views/auth/ForgotPassword.vue';
+import ResetPasswordForm from '../views/auth/ResetPasswordForm.vue';
 import Layout from '../views/Layout.vue'
 import Home from '../views/Home.vue';
 import LayoutAdmin from '../views/LayoutAdmin.vue';
@@ -50,6 +52,22 @@ const routes = [
             meta: {
                 guest: true
             }
+        },
+        {
+            path: '/reset-password', 
+            name: 'reset-password', 
+            component: ForgotPassword, 
+            meta: {
+                guest: true
+            } 
+        },
+        { 
+            path: '/reset-password/:token', 
+            name: 'reset-password-form', 
+            component: ResetPasswordForm, 
+            meta: {
+                guest: true
+            } 
         }]
     },
     {

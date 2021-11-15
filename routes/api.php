@@ -25,6 +25,8 @@ Route::group([
 ], function () {
     Route::post('login', 'AuthController@login');
     Route::post('register', 'AuthController@register');
+    Route::post('reset-password', 'AuthController@sendPasswordResetLink');
+    Route::post('reset/password', 'AuthController@callResetPassword');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
     Route::post('logout', 'AuthController@logout');
