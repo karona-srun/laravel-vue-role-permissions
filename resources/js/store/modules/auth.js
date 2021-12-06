@@ -38,7 +38,8 @@ const actions = {
     },
     signUp({ commit }, data) {
         return axios.post('/api/auth/sign-up', {
-            name: data.name,
+            firstname: data.firstname,
+            lastname: data.lastname,
             email: data.email,
             password: data.password,
             password_confirmation: data.password_confirmation

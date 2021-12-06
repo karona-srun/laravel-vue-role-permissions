@@ -3,12 +3,22 @@
     <Col :sm="12" :md="12" :lg="6">
       <Divider>SignUp Account</Divider>
       <Form ref="formInline" :model="formInline" :rules="ruleInline">
-        <FormItem prop="Name">
+        <FormItem prop="First Name">
           <Input
             type="text"
             prefix="ios-person-outline"
-            v-model="formInline.name"
-            placeholder="Name"
+            v-model="formInline.firstname"
+            placeholder="First Name"
+            focus
+          >
+          </Input>
+        </FormItem>
+        <FormItem prop="Last Name">
+          <Input
+            type="text"
+            prefix="ios-person-outline"
+            v-model="formInline.lastname"
+            placeholder="Last Name"
             focus
           >
           </Input>
@@ -78,16 +88,24 @@ export default {
     };
     return {
       formInline: {
-        name: "",
+        firstname: "",
+        lastname: "",
         email: "",
         password: "",
         password_confirmation: "",
       },
       ruleInline: {
-        name: [
+        firstname: [
           {
             required: true,
-            message: "Please fill in the name",
+            message: "Please fill in the first name",
+            trigger: "blur",
+          },
+        ],
+        lastname: [
+          {
+            required: true,
+            message: "Please fill in the first name",
             trigger: "blur",
           },
         ],

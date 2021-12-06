@@ -6120,6 +6120,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -6149,15 +6159,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     return {
       formInline: {
-        name: "",
+        firstname: "",
+        lastname: "",
         email: "",
         password: "",
         password_confirmation: ""
       },
       ruleInline: {
-        name: [{
+        firstname: [{
           required: true,
-          message: "Please fill in the name",
+          message: "Please fill in the first name",
+          trigger: "blur"
+        }],
+        lastname: [{
+          required: true,
+          message: "Please fill in the first name",
           trigger: "blur"
         }],
         email: [{
@@ -7888,7 +7904,8 @@ var actions = {
   signUp: function signUp(_ref2, data) {
     var commit = _ref2.commit;
     return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/auth/sign-up', {
-      name: data.name,
+      firstname: data.firstname,
+      lastname: data.lastname,
       email: data.email,
       password: data.password,
       password_confirmation: data.password_confirmation
@@ -62491,21 +62508,44 @@ var render = function() {
             [
               _c(
                 "FormItem",
-                { attrs: { prop: "Name" } },
+                { attrs: { prop: "First Name" } },
                 [
                   _c("Input", {
                     attrs: {
                       type: "text",
                       prefix: "ios-person-outline",
-                      placeholder: "Name",
+                      placeholder: "First Name",
                       focus: ""
                     },
                     model: {
-                      value: _vm.formInline.name,
+                      value: _vm.formInline.firstname,
                       callback: function($$v) {
-                        _vm.$set(_vm.formInline, "name", $$v)
+                        _vm.$set(_vm.formInline, "firstname", $$v)
                       },
-                      expression: "formInline.name"
+                      expression: "formInline.firstname"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "FormItem",
+                { attrs: { prop: "Last Name" } },
+                [
+                  _c("Input", {
+                    attrs: {
+                      type: "text",
+                      prefix: "ios-person-outline",
+                      placeholder: "Last Name",
+                      focus: ""
+                    },
+                    model: {
+                      value: _vm.formInline.lastname,
+                      callback: function($$v) {
+                        _vm.$set(_vm.formInline, "lastname", $$v)
+                      },
+                      expression: "formInline.lastname"
                     }
                   })
                 ],
