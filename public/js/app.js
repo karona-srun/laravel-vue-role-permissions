@@ -5485,6 +5485,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -5587,6 +5594,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5601,7 +5609,7 @@ __webpack_require__.r(__webpack_exports__);
       return ["menu-item", this.isCollapsed ? "collapsed-menu" : ""];
     }
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)(["signOut"])), {}, {
     collapsedSider: function collapsedSider() {
       this.$refs.side1.toggleCollapse();
     },
@@ -5612,19 +5620,28 @@ __webpack_require__.r(__webpack_exports__);
         title: "Sign Out",
         content: "<p>Do you want to sign out now?</p>",
         onOk: function onOk() {
-          localStorage.removeItem("user");
-          localStorage.removeItem("jwt");
+          // localStorage.removeItem("user");
+          // localStorage.removeItem("accessToken");
+          // localStorage.removeItem("jwt");
+          // if (localStorage.getItem("accessToken") == null) {
+          //   this.$router.push({ path:"/sign-in" });
+          // }
+          var response = _this.signOut();
 
-          if (localStorage.getItem("jwt") == null) {
-            _this.$router.push("/sign-in");
-          }
+          response.then(function (response) {
+            console.log(response);
+
+            _this.$router.push({
+              path: "/sign-in"
+            });
+          });
         },
         onCancel: function onCancel() {
           _this.$Message.info("Clicked cancel");
         }
       });
     }
-  }
+  })
 });
 
 /***/ }),
@@ -5962,14 +5979,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      isloading: true,
       formInline: {
         email: "",
         password: ""
@@ -6000,7 +6013,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     handleSubmit: function handleSubmit(name) {
       var _this = this;
 
-      this.isloading = true, this.$refs[name].validate(function (valid) {
+      this.$refs[name].validate(function (valid) {
         if (valid) {
           var response = _this.signIn(_this.formInline);
 
@@ -6017,13 +6030,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   desc: response.error
                 });
               }
-
-              _this.isloading = true;
             } else {
-              _this.isloading = false, localStorage.signedIn = true;
-              localStorage.setItem('user', JSON.stringify(_this.formInline));
-              localStorage.setItem('jwt', _this.formInline);
-
               _this.$router.push({
                 path: '/dashboard'
               });
@@ -7599,25 +7606,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _views_auth_SignIn_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../views/auth/SignIn.vue */ "./resources/js/views/auth/SignIn.vue");
-/* harmony import */ var _views_auth_SignUp_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../views/auth/SignUp.vue */ "./resources/js/views/auth/SignUp.vue");
-/* harmony import */ var _views_auth_ForgotPassword_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/auth/ForgotPassword.vue */ "./resources/js/views/auth/ForgotPassword.vue");
-/* harmony import */ var _views_auth_ResetPasswordForm_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/auth/ResetPasswordForm.vue */ "./resources/js/views/auth/ResetPasswordForm.vue");
-/* harmony import */ var _views_Layout_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../views/Layout.vue */ "./resources/js/views/Layout.vue");
-/* harmony import */ var _views_Home_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../views/Home.vue */ "./resources/js/views/Home.vue");
-/* harmony import */ var _views_LayoutAdmin_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../views/LayoutAdmin.vue */ "./resources/js/views/LayoutAdmin.vue");
-/* harmony import */ var _views_Dashboard_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../views/Dashboard.vue */ "./resources/js/views/Dashboard.vue");
-/* harmony import */ var _views_users_Index_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../views/users/Index.vue */ "./resources/js/views/users/Index.vue");
-/* harmony import */ var _views_users_Create_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../views/users/Create.vue */ "./resources/js/views/users/Create.vue");
-/* harmony import */ var _views_users_Edit_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../views/users/Edit.vue */ "./resources/js/views/users/Edit.vue");
-/* harmony import */ var _views_roles_Index_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../views/roles/Index.vue */ "./resources/js/views/roles/Index.vue");
-/* harmony import */ var _views_roles_Create_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../views/roles/Create.vue */ "./resources/js/views/roles/Create.vue");
-/* harmony import */ var _views_roles_Edit_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../views/roles/Edit.vue */ "./resources/js/views/roles/Edit.vue");
-/* harmony import */ var _views_roles_Show_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../views/roles/Show.vue */ "./resources/js/views/roles/Show.vue");
-/* harmony import */ var _views_users_Show_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../views/users/Show.vue */ "./resources/js/views/users/Show.vue");
-/* harmony import */ var _views_NotAuthorized_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../views/NotAuthorized.vue */ "./resources/js/views/NotAuthorized.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store/index.js");
+/* harmony import */ var _views_auth_SignIn_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../views/auth/SignIn.vue */ "./resources/js/views/auth/SignIn.vue");
+/* harmony import */ var _views_auth_SignUp_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/auth/SignUp.vue */ "./resources/js/views/auth/SignUp.vue");
+/* harmony import */ var _views_auth_ForgotPassword_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/auth/ForgotPassword.vue */ "./resources/js/views/auth/ForgotPassword.vue");
+/* harmony import */ var _views_auth_ResetPasswordForm_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../views/auth/ResetPasswordForm.vue */ "./resources/js/views/auth/ResetPasswordForm.vue");
+/* harmony import */ var _views_Layout_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../views/Layout.vue */ "./resources/js/views/Layout.vue");
+/* harmony import */ var _views_Home_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../views/Home.vue */ "./resources/js/views/Home.vue");
+/* harmony import */ var _views_LayoutAdmin_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../views/LayoutAdmin.vue */ "./resources/js/views/LayoutAdmin.vue");
+/* harmony import */ var _views_Dashboard_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../views/Dashboard.vue */ "./resources/js/views/Dashboard.vue");
+/* harmony import */ var _views_AdminDashboad_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../views/AdminDashboad.vue */ "./resources/js/views/AdminDashboad.vue");
+/* harmony import */ var _views_users_Index_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../views/users/Index.vue */ "./resources/js/views/users/Index.vue");
+/* harmony import */ var _views_users_Create_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../views/users/Create.vue */ "./resources/js/views/users/Create.vue");
+/* harmony import */ var _views_users_Edit_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../views/users/Edit.vue */ "./resources/js/views/users/Edit.vue");
+/* harmony import */ var _views_roles_Index_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../views/roles/Index.vue */ "./resources/js/views/roles/Index.vue");
+/* harmony import */ var _views_roles_Create_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../views/roles/Create.vue */ "./resources/js/views/roles/Create.vue");
+/* harmony import */ var _views_roles_Edit_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../views/roles/Edit.vue */ "./resources/js/views/roles/Edit.vue");
+/* harmony import */ var _views_roles_Show_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../views/roles/Show.vue */ "./resources/js/views/roles/Show.vue");
+/* harmony import */ var _views_users_Show_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../views/users/Show.vue */ "./resources/js/views/users/Show.vue");
+/* harmony import */ var _views_NotAuthorized_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../views/NotAuthorized.vue */ "./resources/js/views/NotAuthorized.vue");
 
 
 
@@ -7637,110 +7646,120 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_17__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_18__["default"]);
+
+
+vue__WEBPACK_IMPORTED_MODULE_19__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_20__["default"]);
 var routes = [{
   path: '/',
-  component: _views_Layout_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+  component: _views_Layout_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
   children: [{
     name: 'Home',
     path: '/',
-    component: _views_Home_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    component: _views_Home_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     meta: {
       guest: true
     }
   }, {
     name: 'SignIn',
     path: '/sign-in',
-    component: _views_auth_SignIn_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    component: _views_auth_SignIn_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     meta: {
       guest: true
     }
   }, {
     name: 'SignUp',
     path: '/sign-up',
-    component: _views_auth_SignUp_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    component: _views_auth_SignUp_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     meta: {
       guest: true
     }
   }, {
     path: '/password/email',
     name: 'Reset-Password',
-    component: _views_auth_ForgotPassword_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    component: _views_auth_ForgotPassword_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     meta: {
       guest: true
     }
   }, {
     path: '/password/reset/:token',
     name: 'Reset-Password-Form',
-    component: _views_auth_ResetPasswordForm_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    component: _views_auth_ResetPasswordForm_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     meta: {
       guest: true
     }
   }]
 }, {
   path: '/dashboard',
-  component: _views_LayoutAdmin_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+  component: _views_LayoutAdmin_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
   children: [{
     path: '/',
     name: 'Dashboard',
-    component: _views_Dashboard_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    component: _views_Dashboard_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
     meta: {
       requiresAuth: true
     }
   }, {
     path: '/users',
-    component: _views_users_Index_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    component: _views_users_Index_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
     meta: {
       requiresAuth: true
     }
   }, {
     path: '/create-user',
-    component: _views_users_Create_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    component: _views_users_Create_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
     meta: {
       requiresAuth: true
     }
   }, {
     path: '/users/edit-user/:id',
-    component: _views_users_Edit_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    component: _views_users_Edit_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
     meta: {
       requiresAuth: true
     }
   }, {
     path: '/users/user-detail/:id',
-    component: _views_users_Show_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
+    component: _views_users_Show_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
     meta: {
       requiresAuth: true
     }
   }, {
     path: '/roles',
-    component: _views_roles_Index_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    component: _views_roles_Index_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
     meta: {
       requiresAuth: true
     }
   }, {
     path: '/create-role',
-    component: _views_roles_Create_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
+    component: _views_roles_Create_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
     meta: {
       requiresAuth: true
     }
   }, {
     path: '/role/edit-role/:id',
-    component: _views_roles_Edit_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
+    component: _views_roles_Edit_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
     meta: {
       requiresAuth: true
     }
   }, {
     path: '/show-role/:id',
-    component: _views_roles_Show_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
+    component: _views_roles_Show_vue__WEBPACK_IMPORTED_MODULE_16__["default"],
     meta: {
       requiresAuth: true
+    }
+  }, {
+    path: '/admin',
+    name: 'admin',
+    component: _views_AdminDashboad_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    meta: {
+      requiresAuth: true,
+      is_admin: true
     }
   }]
 }, {
   path: '*',
-  component: _views_NotAuthorized_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
+  component: _views_NotAuthorized_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
 }];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_18__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_20__["default"]({
   mode: 'history',
   routes: routes,
   linkActiveClass: 'active'
@@ -7749,7 +7768,7 @@ router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
     return record.meta.requiresAuth;
   })) {
-    if (localStorage.getItem('jwt') == null) {
+    if (localStorage.getItem('accessToken') == null) {
       next({
         path: '/sign-in',
         params: {
@@ -7757,7 +7776,7 @@ router.beforeEach(function (to, from, next) {
         }
       });
     } else {
-      var user = JSON.parse(localStorage.getItem('user'));
+      var user = JSON.parse(localStorage.getItem('accessToken'));
 
       if (to.matched.some(function (record) {
         return record.meta.is_admin;
@@ -7776,7 +7795,7 @@ router.beforeEach(function (to, from, next) {
   } else if (to.matched.some(function (record) {
     return record.meta.guest;
   })) {
-    if (localStorage.getItem('jwt') == null) {
+    if (localStorage.getItem('accessToken') == null) {
       next();
     } else {
       next({
@@ -7812,17 +7831,6 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   modules: {
     auth: _modules_auth__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  state: {
-    isLoggedIn: !!localStorage.getItem('token')
-  },
-  mutations: {
-    loginUser: function loginUser(state) {
-      state.isLoggedIn = true;
-    },
-    logoutUser: function logoutUser(state) {
-      state.isLoggedIn = false;
-    }
   }
 }));
 
@@ -7841,6 +7849,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var view_design__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! view-design */ "./node_modules/view-design/dist/iview.js");
+/* harmony import */ var view_design__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(view_design__WEBPACK_IMPORTED_MODULE_1__);
+
 
 var state = {
   userdata: [],
@@ -7865,7 +7876,9 @@ var actions = {
       email: data.email,
       password: data.password
     }).then(function (response) {
-      // console.info('🚀 '+ JSON.stringify(response.data))
+      console.info('🚀 ' + JSON.stringify(response.data.access_token)); // localStorage.setItem("accessToken",response.access_token)
+
+      localStorage.setItem("accessToken", JSON.stringify(response.data.access_token));
       commit('signin', response.data);
       return response.data;
     })["catch"](function (error) {
@@ -7887,8 +7900,19 @@ var actions = {
       return err.response.data;
     });
   },
-  forgotpassword: function forgotpassword(_ref3, email) {
+  signOut: function signOut(_ref3) {
     var commit = _ref3.commit;
+    // return axios.post('/api/auth/sign-out')
+    // .then(response => {
+    // console.info('🚀 '+ JSON.stringify(response.data))
+    localStorage.removeItem("accessToken");
+    commit('signin', '');
+    return "response.data"; // }).catch(function (error){
+    //     return error;
+    // });
+  },
+  forgotpassword: function forgotpassword(_ref4, email) {
+    var commit = _ref4.commit;
     return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/auth/password/email', {
       email: email
     }).then(function (response) {
@@ -7897,8 +7921,8 @@ var actions = {
       }
     });
   },
-  resetpassword: function resetpassword(_ref4, data) {
-    var commit = _ref4.commit;
+  resetpassword: function resetpassword(_ref5, data) {
+    var commit = _ref5.commit;
     return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/auth/password/reset', {
       email: data.email,
       password: data.password,
@@ -7913,7 +7937,10 @@ var actions = {
 };
 var getters = {
   loggedIn: function loggedIn(state) {
-    return state.userdata !== null;
+    return state.access_token !== null;
+  },
+  isLoggedIn: function isLoggedIn(state) {
+    return !!state.access_token;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -59958,6 +59985,40 @@ component.options.__file = "resources/js/App.vue"
 
 /***/ }),
 
+/***/ "./resources/js/views/AdminDashboad.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/views/AdminDashboad.vue ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/views/AdminDashboad.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/views/Dashboard.vue":
 /*!******************************************!*\
   !*** ./resources/js/views/Dashboard.vue ***!
@@ -62352,19 +62413,10 @@ var render = function() {
               _c(
                 "FormItem",
                 [
-                  !_vm.isloading
-                    ? _c(
-                        "Button",
-                        { attrs: { type: "primary", long: "" } },
-                        [_c("Icon", { attrs: { type: "ios-loading" } })],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
                   _c(
                     "Button",
                     {
-                      attrs: { else: "", type: "primary", long: "" },
+                      attrs: { type: "primary", long: "" },
                       on: {
                         click: function($event) {
                           return _vm.handleSubmit("formInline")

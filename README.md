@@ -14,6 +14,9 @@
 ### VUEX Framework
 - [VUEX](https://www.ictshore.com/javascript/vuex-modules-tutorial)
 
+### Icon
+- [ICON](https://www.iconfinder.com/iconsets/love-and-marriage-7?ref=iorozuya)
+
 
 ### Installing
 ~~~
