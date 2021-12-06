@@ -63,7 +63,8 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|between:2,100',
+            'firstname' => 'required|string|between:2,100',
+            'lastname' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
         ]);
@@ -77,7 +78,12 @@ class AuthController extends Controller
 
         $user = User::create(array_merge(
             $validator->validated(),
-            ['password' => bcrypt($request->password)]
+            [   'is_admin' => 0,
+                'active' => 0,
+                'avatar' => '',
+                'desc' => '',
+                'password' => bcrypt($request->password)
+            ]
         ));
 
         return response()->json([
