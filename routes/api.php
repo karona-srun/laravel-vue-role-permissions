@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\ForgotPasswordController;
+use App\Http\Controllers\API\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +20,26 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+
+Route::group([
+    'namespace' => 'App\Http\Controllers\API',
+    'prefix' => 'auth'
+], function () {
+        Route::post('password/email', 'PasswordResetRequestController@forgot');
+        Route::post('password/reset', 'PasswordResetRequestController@reset');
+        // Send reset password mail
+        // Route::post('reset-password', 'PasswordResetRequestController@sendPasswordResetLink');
+        // handle reset password form process
+        // Route::post('reset/password', 'PasswordResetRequestController@callResetPassword');
+    });
+    
 Route::group([
     'middleware' => 'api',
     'namespace' => 'App\Http\Controllers\API',
     'prefix' => 'auth'
 ], function () {
-    Route::post('login', 'AuthController@login');
-    Route::post('register', 'AuthController@register');
-    Route::post('reset-password', 'AuthController@sendPasswordResetLink');
-    Route::post('reset/password', 'AuthController@callResetPassword');
+    Route::post('sign-in', 'AuthController@login');
+    Route::post('sign-up', 'AuthController@register');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
     Route::post('logout', 'AuthController@logout');

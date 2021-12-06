@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import auth from 'auth';
+import auth from './modules/auth';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+    modules:{
+        auth
+    },
     state: {
         isLoggedIn: !!localStorage.getItem('token')
     },
@@ -14,8 +17,5 @@ export default new Vuex.Store({
         logoutUser (state) {
             state.isLoggedIn = false
         },
-    },
-    modules:{
-        auth
     }
 })

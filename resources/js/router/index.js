@@ -54,16 +54,16 @@ const routes = [
             }
         },
         {
-            path: '/reset-password', 
-            name: 'reset-password', 
+            path: '/password/email', 
+            name: 'Reset-Password', 
             component: ForgotPassword, 
             meta: {
                 guest: true
             } 
         },
         { 
-            path: '/reset-password/:token', 
-            name: 'reset-password-form', 
+            path: '/password/reset/:token', 
+            name: 'Reset-Password-Form', 
             component: ResetPasswordForm, 
             meta: {
                 guest: true

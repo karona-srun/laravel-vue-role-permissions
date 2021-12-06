@@ -1,12 +1,12 @@
 <template>
   <Row justify="center">
-    <Col span="6">
+    <Col :sm="12" :md="12" :lg="6">
       <Divider>SignIn Account</Divider>
       <Form ref="formInline" :model="formInline" :rules="ruleInline">
         <FormItem prop="email">
           <Input
             type="email"
-            prefix="ios-person-outline"
+            prefix="ios-mail-outline"
             v-model="formInline.email"
             placeholder="Email address"
             focus
@@ -23,9 +23,12 @@
           >
           </Input>
         </FormItem>
-        <Button type="text" class="text-break" :style="{ margin:'0px 0px 0px -15px' }" to="/reset-password">Forgot Your Password ?</Button>
+        <Button type="text" class="text-break" :style="{ margin:'0px 0px 0px -15px' }" to="/password/email">Forgot Your Password ?</Button>
         <FormItem>
-          <Button type="primary" long @click="handleSubmit('formInline')"
+          <Button v-if="!isloading" type="primary" long
+            ><Icon type="ios-loading" /></Button
+          >
+          <Button else type="primary" long @click="handleSubmit('formInline')"
             >Signin</Button
           >
           <Divider plain>Or</Divider>
@@ -38,9 +41,11 @@
   </Row>
 </template>
 <script>
+import { mapActions, mapState } from 'vuex';
 export default {
   data() {
     return {
+      isloading: true, 
       formInline: {
         email: "",
         password: "",
@@ -51,6 +56,9 @@ export default {
             required: true,
             message: "Please fill in the email address",
             trigger: "blur",
+          },
+          {
+            type: "email"
           },
         ],
         password: [
@@ -69,25 +77,38 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapState(["userdata"])     
+  },
   methods: {
+    ...mapActions(["signIn"]),
     handleSubmit(name) {
+      this.isloading = true, 
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Notice.success({
-                title: 'Notification Success!',
-                desc: 'Success!'
-            });
+        const response = this.signIn(this.formInline);
+        response.then(response => { 
+          if(response.status === 'error'){
+            if(response.validator === true){
+              this.$Notice.error({
+                title: 'Error!',
+                desc: response[0]
+              });
+            }else{
+              this.$Notice.error({
+                title: 'Error!',
+                desc: response.error
+              });
+            }
+            this.isloading = true
+          }else{
+            this.isloading = false,
             localStorage.signedIn = true;
             localStorage.setItem('user',JSON.stringify(this.formInline))
             localStorage.setItem('jwt',this.formInline)
-            this.$router.push('/dashboard')
-        } else {
-            this.$Notice.error({
-                title: 'Notification Fail!',
-                desc: 'Please try again!'
-            });
-
-            localStorage.signedIn = false;
+            this.$router.push({ path:'/dashboard' })
+          }
+        })
         }
       });
     },

@@ -1,12 +1,18 @@
 <template>
   <Row justify="center">
-    <Col span="6">
+    <Col :sm="12" :md="12" :lg="6">
       <Divider>New Password</Divider>
+      <h5>Set new your password</h5>
+      <p>
+        Enter your email address and we will send your instruction on how to
+        reset your password.
+      </p>
+      <br />
       <Form ref="formInline" :model="formInline" :rules="ruleInline">
         <FormItem prop="email">
           <Input
             type="email"
-            prefix="ios-person-outline"
+            prefix="ios-mail-outline"
             v-model="formInline.email"
             placeholder="Email address"
             focus
@@ -23,27 +29,55 @@
           >
           </Input>
         </FormItem>
-        <Button type="text" class="text-break" :style="{ margin:'0px 0px 0px -15px' }" to="/forgot-password">Forgot Your Password ?</Button>
+        <FormItem prop="password_confirmation">
+          <Input
+            type="password"
+            password
+            prefix="ios-lock-outline"
+            v-model="formInline.password_confirmation"
+            placeholder="Re-Type Password"
+          ></Input>
+        </FormItem>
         <FormItem>
           <Button type="primary" long @click="handleSubmit('formInline')"
-            >Update Password</Button>
+            >Update Password</Button
           >
           <Divider plain>Or</Divider>
-          <Button type="primary" long @click="handleGoBack"
-            >Go Back</Button
-          >
+          <Button type="primary" long @click="handleGoBack">Go Back</Button>
         </FormItem>
       </Form>
     </Col>
   </Row>
 </template>
 <script>
+import { mapActions } from 'vuex';
 export default {
   data() {
+    const validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("Please fill in the password"));
+      } else {
+        if (this.formInline.password_confirmation !== "") {
+          this.$refs.formInline.validateField("password_confirmation");
+        }
+        callback();
+      }
+    };
+    const validatePassCheck = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("Please fill in the password again"));
+      } else if (value !== this.formInline.password) {
+        callback(new Error("The two input passwords do not match!"));
+      } else {
+        callback();
+      }
+    };
     return {
       formInline: {
-        email: "",
+        email: this.$route.query.email,
         password: "",
+        password_confirmation: "",
+        token: this.$route.path.split("/")[3]
       },
       ruleInline: {
         email: [
@@ -55,45 +89,45 @@ export default {
         ],
         password: [
           {
+            validator: validatePass,
             required: true,
-            message: "Please fill in the password.",
             trigger: "blur",
           },
+        ],
+        password_confirmation: [
           {
-            type: "string",
-            min: 6,
-            message: "The password length cannot be less than 6 bits",
+            validator: validatePassCheck,
             trigger: "blur",
+            required: true,
           },
         ],
       },
     };
   },
   methods: {
+    ...mapActions(["resetpassword"]),
     handleSubmit(name) {
       this.$refs[name].validate((valid) => {
-        if (valid) {
+        const response = this.resetpassword(this.formInline);
+        response.then(response => {
+          if (valid) {
           this.$Notice.success({
-                title: 'Notification Success!',
-                desc: 'Success!'
-            });
-            localStorage.signedIn = true;
-            localStorage.setItem('user',JSON.stringify(this.formInline))
-            localStorage.setItem('jwt',this.formInline)
-            this.$router.push('/dashboard')
+            title: "Notification Success!",
+            desc: response.message,
+          });
+          
         } else {
-            this.$Notice.error({
-                title: 'Notification Fail!',
-                desc: 'Please try again!'
-            });
-
-            localStorage.signedIn = false;
+          this.$Notice.error({
+            title: "Notification Fail!",
+            desc: "Please try again!",
+          });
         }
+        })
       });
     },
-    handleGoBack(){
-      this.$router.push('/')
-    }
+    handleGoBack() {
+      this.$router.push("/");
+    },
   },
 };
 </script>

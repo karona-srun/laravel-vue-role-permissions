@@ -1,12 +1,22 @@
 <template>
   <Row justify="center">
-    <Col span="6">
+    <Col :sm="12" :md="12" :lg="6">
       <Divider>SignUp Account</Divider>
       <Form ref="formInline" :model="formInline" :rules="ruleInline">
+        <FormItem prop="Name">
+          <Input
+            type="text"
+            prefix="ios-person-outline"
+            v-model="formInline.name"
+            placeholder="Name"
+            focus
+          >
+          </Input>
+        </FormItem>
         <FormItem prop="email">
           <Input
             type="email"
-            prefix="ios-person-outline"
+            prefix="ios-mail-outline"
             v-model="formInline.email"
             placeholder="Email address"
             focus
@@ -23,12 +33,12 @@
           >
           </Input>
         </FormItem>
-        <FormItem prop="passwdCheck">
+        <FormItem prop="password_confirmation">
           <Input
             type="password"
             password
             prefix="ios-lock-outline"
-            v-model="formInline.passwdCheck"
+            v-model="formInline.password_confirmation"
             placeholder="Re-Type Password"
           ></Input>
         </FormItem>
@@ -44,14 +54,15 @@
   </Row>
 </template>
 <script>
+import { mapActions } from 'vuex';
 export default {
   data() {
     const validatePass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("Please fill in the password"));
       } else {
-        if (this.formInline.passwdCheck !== "") {
-          this.$refs.formInline.validateField("passwdCheck");
+        if (this.formInline.password_confirmation !== "") {
+          this.$refs.formInline.validateField("password_confirmation");
         }
         callback();
       }
@@ -67,11 +78,19 @@ export default {
     };
     return {
       formInline: {
+        name: "",
         email: "",
         password: "",
-        passwdCheck: "",
+        password_confirmation: "",
       },
       ruleInline: {
+        name: [
+          {
+            required: true,
+            message: "Please fill in the name",
+            trigger: "blur",
+          },
+        ],
         email: [
           {
             required: true,
@@ -86,7 +105,7 @@ export default {
             trigger: "blur",
           },
         ],
-        passwdCheck: [
+        password_confirmation: [
           {
             validator: validatePassCheck,
             trigger: "blur",
@@ -97,24 +116,44 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["signUp"]),
     handleSubmit(name) {
       this.$refs[name].validate((valid) => {
-        if (valid) {
-          this.$Message.success({
-            background: true,
-            content: "Success!",
-          });
-          localStorage.signedIn = true;
-          localStorage.setItem("user", JSON.stringify(this.formInline));
-          localStorage.setItem("jwt", this.formInline);
-          this.$router.push("/dashboard");
-        } else {
-          this.$Message.error({
-            background: true,
-            content: "Fail!",
-          });
-          localStorage.signedIn = false;
-        }
+        const response = this.signUp(this.formInline);
+        
+        response.then(response => {
+          console.log(response);
+
+          if(response.status === 'error'){
+            this.$Notice.error({
+                title: 'Error!',
+                desc: response[0]
+            });
+          }else{
+            this.$Notice.success({
+                title: 'Success!',
+                desc: response.message
+            });
+            this.$router.push({ path:"/sign-in" });
+          }
+        })
+        
+        // if (valid) {
+        //   this.$Message.success({
+        //     background: true,
+        //     content: "Success!",
+        //   });
+          // localStorage.signedIn = true;
+          // localStorage.setItem("user", JSON.stringify(this.formInline));
+          // localStorage.setItem("jwt", this.formInline);
+          // this.$router.push("/dashboard");
+        // } else {
+        //   this.$Message.error({
+        //     background: true,
+        //     content: "Fail!",
+        //   });
+        //   localStorage.signedIn = false;
+        // }
       });
     },
     handleGoBack() {
