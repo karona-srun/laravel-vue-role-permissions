@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Header } from 'view-design';
 
 const state = {
     userdata: [],
@@ -25,7 +26,9 @@ const actions = {
             password: data.password
         })
         .then(response => {
-            // console.info('🚀 '+ JSON.stringify(response.data))
+            console.info('🚀 '+ JSON.stringify(response.data.access_token))
+            // localStorage.setItem("accessToken",response.access_token)
+            localStorage.setItem("accessToken",JSON.stringify(response.data.access_token))
             commit('signin', response.data);
             return response.data;
         }).catch(function (error){
@@ -47,6 +50,18 @@ const actions = {
             // console.log("api Erorr: ", err.response.data);
             return err.response.data;
         })
+    
+    },
+    signOut({ commit }) {
+        // return axios.post('/api/auth/sign-out')
+        // .then(response => {
+            // console.info('🚀 '+ JSON.stringify(response.data))
+            localStorage.removeItem("accessToken")
+            commit('signin', '');
+            return "response.data";
+        // }).catch(function (error){
+        //     return error;
+        // });
     
     },
     forgotpassword({ commit }, email) {
@@ -76,8 +91,9 @@ const actions = {
 
 const getters = {
     loggedIn: function (state) {
-        return state.userdata !== null
-    }
+        return state.access_token !== null
+    },
+    isLoggedIn: state => !!state.access_token,
 }
 
 export default {

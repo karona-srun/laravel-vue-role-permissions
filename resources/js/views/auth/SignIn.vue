@@ -25,10 +25,7 @@
         </FormItem>
         <Button type="text" class="text-break" :style="{ margin:'0px 0px 0px -15px' }" to="/password/email">Forgot Your Password ?</Button>
         <FormItem>
-          <Button v-if="!isloading" type="primary" long
-            ><Icon type="ios-loading" /></Button
-          >
-          <Button else type="primary" long @click="handleSubmit('formInline')"
+          <Button type="primary" long @click="handleSubmit('formInline')"
             >Signin</Button
           >
           <Divider plain>Or</Divider>
@@ -44,8 +41,7 @@
 import { mapActions, mapState } from 'vuex';
 export default {
   data() {
-    return {
-      isloading: true, 
+    return { 
       formInline: {
         email: "",
         password: "",
@@ -83,7 +79,6 @@ export default {
   methods: {
     ...mapActions(["signIn"]),
     handleSubmit(name) {
-      this.isloading = true, 
       this.$refs[name].validate((valid) => {
         if (valid) {
         const response = this.signIn(this.formInline);
@@ -100,12 +95,7 @@ export default {
                 desc: response.error
               });
             }
-            this.isloading = true
           }else{
-            this.isloading = false,
-            localStorage.signedIn = true;
-            localStorage.setItem('user',JSON.stringify(this.formInline))
-            localStorage.setItem('jwt',this.formInline)
             this.$router.push({ path:'/dashboard' })
           }
         })

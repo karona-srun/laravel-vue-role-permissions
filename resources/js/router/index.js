@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '../store';
 
 import SignIn from '../views/auth/SignIn.vue';
 import SignUp from '../views/auth/SignUp.vue';
@@ -9,6 +10,7 @@ import Layout from '../views/Layout.vue'
 import Home from '../views/Home.vue';
 import LayoutAdmin from '../views/LayoutAdmin.vue';
 import Dashboard from '../views/Dashboard.vue';
+import AdminDashboad from '../views/AdminDashboad.vue';
 
 import UserList from '../views/users/Index.vue';
 import CreateUser from '../views/users/Create.vue';
@@ -138,6 +140,15 @@ const routes = [
                     requiresAuth: true
                 }
             },
+            {
+                path: '/admin',
+                name: 'admin',
+                component: AdminDashboad,
+                meta: {
+                  requiresAuth: true,
+                  is_admin : true
+                }
+            },
         ]
     },
     {
@@ -154,33 +165,33 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (localStorage.getItem('jwt') == null) {
-            next({
-                path: '/sign-in',
-                params: { nextUrl: to.fullPath }
-            })
-        } else {
-            let user = JSON.parse(localStorage.getItem('user'))
-            if (to.matched.some(record => record.meta.is_admin)) {
-                if (user.is_admin == 1) {
-                    next()
-                } else {
-                    next({ path: '/dashboard' })
-                }
-            } else {
-                next()
-            }
-        }
-    } else if (to.matched.some(record => record.meta.guest)) {
-        if (localStorage.getItem('jwt') == null) {
+      if (localStorage.getItem('accessToken') == null) {
+        next({
+          path: '/sign-in',
+          params: { nextUrl: to.fullPath }
+        })
+      } else {
+        let user = JSON.parse(localStorage.getItem('accessToken'))
+        if (to.matched.some(record => record.meta.is_admin)) {
+          if (user.is_admin == 1) {
             next()
-        } else {
+          } else {
             next({ path: '/dashboard' })
+          }
+        } else {
+          next()
         }
-    } else {
+      }
+    } else if (to.matched.some(record => record.meta.guest)) {
+      if (localStorage.getItem('accessToken') == null) {
         next()
+      } else {
+        next({ path: '/dashboard' })
+      }
+    } else {
+      next()
     }
-})
+  })
 
 export default router;
 

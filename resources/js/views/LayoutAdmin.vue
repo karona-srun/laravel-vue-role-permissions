@@ -101,6 +101,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -116,6 +117,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(["signOut"]),
     collapsedSider() {
       this.$refs.side1.toggleCollapse();
     },
@@ -124,11 +126,17 @@ export default {
         title: "Sign Out",
         content: "<p>Do you want to sign out now?</p>",
         onOk: () => {
-          localStorage.removeItem("user");
-          localStorage.removeItem("jwt");
-          if (localStorage.getItem("jwt") == null) {
-            this.$router.push("/sign-in");
-          }
+          // localStorage.removeItem("user");
+          // localStorage.removeItem("accessToken");
+          // localStorage.removeItem("jwt");
+          // if (localStorage.getItem("accessToken") == null) {
+          //   this.$router.push({ path:"/sign-in" });
+          // }
+          const response = this.signOut();
+          response.then((response) => {
+            console.log(response)
+            this.$router.push({ path:"/sign-in" });
+          })
         },
         onCancel: () => {
           this.$Message.info("Clicked cancel");
