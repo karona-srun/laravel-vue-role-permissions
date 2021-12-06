@@ -1,17 +1,17 @@
 <template>
   <div class="layout">
     <Layout :style="{ minHeight: '100vh' }">
-      <Header :style="{ background: '#fff', position: 'fixed', width: '100%' }">
+      <Header :style="{ background: '#fff', width: '100%' }">
         <Menu mode="horizontal" width="auto" theme="light" active-name="1">
           <div class="layout-logo" @click.prevent="homePage">
-            <img src="favicon.png" alt="logo" width="30px" height="30px" style="margin-top:-32px;width: 100px;">
+            <img :src="logo" alt="logo" width="30px" height="30px" style="margin-top:-32px;width: 100px;">
           </div>
           <div class="layout-nav">
-            <MenuItem name="2" to="sign-up">
+            <MenuItem name="2" to="/sign-up">
               <Icon type="ios-person-add-outline" size="20" />
               Sign Up
             </MenuItem>
-            <MenuItem name="3" to="sign-in">
+            <MenuItem name="3" to="/sign-in">
               <Icon type="ios-log-in" size="20"></Icon>
               Sign In
             </MenuItem>
@@ -26,7 +26,7 @@
           minHeight: '500px',
         }"
       >
-        <h1 class="text-center mb-3">Welcome to home page</h1>
+        <!-- <h1 class="text-center mb-3">Welcome to home page</h1> -->
         <router-view> </router-view>
       </Content>
       <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
@@ -35,6 +35,11 @@
 </template>
 <script>
 export default {
+  data(){
+    return{
+      logo: '/favicon.png'
+    }
+  },
   methods: {
     homePage(){
       this.$router.push('/');
@@ -68,6 +73,9 @@ export default {
 .ivu-layout-header {
   padding: 0px;
   border: 3px solid #fff !important;
+}
+.ivu-layout-content{
+  margin: 20px 20px !important;
 }
 .layout-footer-center {
   text-align: center;

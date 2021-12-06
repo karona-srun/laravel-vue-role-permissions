@@ -1,18 +1,14 @@
 <template>
   <Row justify="center">
     <Col :sm="12" :md="12" :lg="6">
-      <Divider>SignUp Account</Divider>
+      <Divider>New Password</Divider>
+      <h5>Set new your password</h5>
+      <p>
+        Enter your email address and we will send your instruction on how to
+        reset your password.
+      </p>
+      <br />
       <Form ref="formInline" :model="formInline" :rules="ruleInline">
-        <FormItem prop="Name">
-          <Input
-            type="text"
-            prefix="ios-person-outline"
-            v-model="formInline.name"
-            placeholder="Name"
-            focus
-          >
-          </Input>
-        </FormItem>
         <FormItem prop="email">
           <Input
             type="email"
@@ -44,7 +40,7 @@
         </FormItem>
         <FormItem>
           <Button type="primary" long @click="handleSubmit('formInline')"
-            >Signin</Button
+            >Update Password</Button
           >
           <Divider plain>Or</Divider>
           <Button type="primary" long @click="handleGoBack">Go Back</Button>
@@ -78,19 +74,12 @@ export default {
     };
     return {
       formInline: {
-        name: "",
-        email: "",
+        email: this.$route.query.email,
         password: "",
         password_confirmation: "",
+        token: this.$route.path.split("/")[3]
       },
       ruleInline: {
-        name: [
-          {
-            required: true,
-            message: "Please fill in the name",
-            trigger: "blur",
-          },
-        ],
         email: [
           {
             required: true,
@@ -116,44 +105,24 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["signUp"]),
+    ...mapActions(["resetpassword"]),
     handleSubmit(name) {
       this.$refs[name].validate((valid) => {
-        const response = this.signUp(this.formInline);
-        
+        const response = this.resetpassword(this.formInline);
         response.then(response => {
-          console.log(response);
-
-          if(response.status === 'error'){
-            this.$Notice.error({
-                title: 'Error!',
-                desc: response[0]
-            });
-          }else{
-            this.$Notice.success({
-                title: 'Success!',
-                desc: response.message
-            });
-            this.$router.push({ path:"/sign-in" });
-          }
+          if (valid) {
+          this.$Notice.success({
+            title: "Notification Success!",
+            desc: response.message,
+          });
+          
+        } else {
+          this.$Notice.error({
+            title: "Notification Fail!",
+            desc: "Please try again!",
+          });
+        }
         })
-        
-        // if (valid) {
-        //   this.$Message.success({
-        //     background: true,
-        //     content: "Success!",
-        //   });
-          // localStorage.signedIn = true;
-          // localStorage.setItem("user", JSON.stringify(this.formInline));
-          // localStorage.setItem("jwt", this.formInline);
-          // this.$router.push("/dashboard");
-        // } else {
-        //   this.$Message.error({
-        //     background: true,
-        //     content: "Fail!",
-        //   });
-        //   localStorage.signedIn = false;
-        // }
       });
     },
     handleGoBack() {

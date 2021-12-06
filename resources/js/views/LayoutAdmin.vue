@@ -1,6 +1,6 @@
 <template>
-<div class="layout">
-  <Layout :style="{ minHeight: '100vh' }">
+  <div class="layout">
+    <Layout :style="{ minHeight: '100vh' }">
       <Sider
         ref="side1"
         hide-trigger
@@ -54,27 +54,35 @@
             type="md-menu"
             size="20"
           ></Icon>
-          <Dropdown trigger="click" class="float-right" style="margin-left: 20px">
-            <a href="javascript:void(0)" :style="{color:'#fff'}">
-                <Icon type="ios-cog-outline" size="20" />
-                Username
-                <Icon type="ios-arrow-down"></Icon>
+          <Dropdown
+            trigger="click"
+            class="float-right"
+            style="margin-left: 20px"
+          >
+            <a href="javascript:void(0)" :style="{ color: '#fff' }">
+              <Icon type="ios-cog-outline" size="20" />
+              Username
+              <Icon type="ios-arrow-down"></Icon>
             </a>
             <DropdownMenu slot="list">
-                <DropdownItem>
-                  <Icon type="ios-person-outline" size="20" />
-                  Profile Account
-                </DropdownItem>
-                <DropdownItem>
-                  <Icon type="ios-analytics-outline" size="20" />
-                  Activity
-                </DropdownItem>
-                <DropdownItem>
-                  <a href="javascript:void(0)" @click="handleSignOut" :style="{color:'#515a6e'}">
-                    <Icon type="ios-log-out" size="20" />
-                    Sign Out
-                  </a>
-                </DropdownItem>
+              <DropdownItem>
+                <Icon type="ios-person-outline" size="20" />
+                Profile Account
+              </DropdownItem>
+              <DropdownItem>
+                <Icon type="ios-analytics-outline" size="20" />
+                Activity
+              </DropdownItem>
+              <DropdownItem>
+                <a
+                  href="javascript:void(0)"
+                  @click="confirm"
+                  :style="{ color: '#515a6e' }"
+                >
+                  <Icon type="ios-log-out" size="20" />
+                  Sign Out
+                </a>
+              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </Header>
@@ -85,11 +93,11 @@
             minHeight: '600px',
           }"
         >
-        <router-view> </router-view>
+          <router-view> </router-view>
         </Content>
       </Layout>
     </Layout>
-</div>
+  </div>
 </template>
 
 <script>
@@ -111,13 +119,22 @@ export default {
     collapsedSider() {
       this.$refs.side1.toggleCollapse();
     },
-    handleSignOut() {
-      localStorage.removeItem('user')
-      localStorage.removeItem('jwt')
-      if (localStorage.getItem('jwt') == null) {
-          this.$router.push('/sign-in')
-      }
-    }
+    confirm() {
+      this.$Modal.confirm({
+        title: "Sign Out",
+        content: "<p>Do you want to sign out now?</p>",
+        onOk: () => {
+          localStorage.removeItem("user");
+          localStorage.removeItem("jwt");
+          if (localStorage.getItem("jwt") == null) {
+            this.$router.push("/sign-in");
+          }
+        },
+        onCancel: () => {
+          this.$Message.info("Clicked cancel");
+        },
+      });
+    },
   },
 };
 </script>
@@ -149,7 +166,7 @@ export default {
 .ivu-layout-sider {
   background: #ffffff !important;
 }
-.float-right{
+.float-right {
   float: right;
   padding-right: 20px;
 }

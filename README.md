@@ -7,9 +7,47 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## IVIEW (VUE UI Framework) 
+
+### IVIEW (VUE UI Framework) 
 - [IVIEW UI](https://www.iviewui.com/components/message-en)
 
-## License
+### VUEX Framework
+- [VUEX](https://www.ictshore.com/javascript/vuex-modules-tutorial)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+### Installing
+~~~
+composer update
+~~~
+
+### Setup Database
+~~~
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=databasename
+DB_USERNAME=root
+DB_PASSWORD=password
+~~~
+
+### RUN Migration
+~~~
+php artisan migrate
+~~~
+
+### Generate Key
+~~~
+php artisan key:generate
+~~~
+
+### Generate JWT Key
+~~~
+php artisan jwt:secret
+~~~
+
+### Optimize Project
+~~~
+php artisan optimize
+~~~
+
+
