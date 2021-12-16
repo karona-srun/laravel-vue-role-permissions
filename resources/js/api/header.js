@@ -1,6 +1,5 @@
 
 class Header {
-  
     responseHeaders() {
         let token = JSON.parse(localStorage.getItem("accessToken"));
         if (token) {
@@ -9,6 +8,7 @@ class Header {
                 "Content-Type": "application/x-www-form-urlencoded; multipart/form-data; application/json; charset=UTF-8",
                 "Accept": "application/json",
                 "X-Requested-With": "XMLHttpRequest",
+                "cache-control": "no-cache",
                 "Authorization": `Bearer ${token}`
             };
             return header;

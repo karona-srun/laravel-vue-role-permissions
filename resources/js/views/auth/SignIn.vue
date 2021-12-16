@@ -26,7 +26,7 @@
         <Button type="text" class="text-break" :style="{ margin:'0px 0px 0px -15px' }" to="/password/email">Forgot Your Password ?</Button>
         <FormItem>
           <Button type="primary" long @click="handleSubmit('formInline')"
-            >Signin</Button
+            >Sign In</Button
           >
           <Divider plain>Or</Divider>
           <Button type="primary" long @click="handleGoBack"
