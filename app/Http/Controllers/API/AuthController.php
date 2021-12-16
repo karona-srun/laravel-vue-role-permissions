@@ -82,6 +82,8 @@ class AuthController extends Controller
                 'active' => 0,
                 'avatar' => '',
                 'desc' => '',
+                'created_by' => 1,
+                'updated_by' => 1,
                 'password' => bcrypt($request->password)
             ]
         ));
@@ -137,7 +139,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'access_token_type' => 'bearer',
-            'expires_in' => Auth::factory()->getTTL() * 60,
+            'expires_in' => Auth::factory()->getTTL() * 600,
             'user' => auth()->user()
         ]);
     }

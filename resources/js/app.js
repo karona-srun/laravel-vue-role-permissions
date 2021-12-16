@@ -26,6 +26,20 @@ Vue.use(ViewUI,
     }
 });
 
+axios.interceptors.response.use(undefined, function (error) {
+    if (error) {
+      const originalRequest = error.config;
+      if (error.response.status === 401 && !originalRequest._retry) {
+          originalRequest._retry = true;
+          const rep = store.dispatch('signOut')
+          rep.then((rep) => {
+          console.log(rep);
+          });
+          return router.push({ path:'/sign-in' })
+      }
+    }
+  })
+  
 const app = new Vue({
     el: '#app',
     store,

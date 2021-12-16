@@ -76,18 +76,38 @@
               placeholder="Enter your last name"
             ></Input>
           </FormItem>
-          <FormItem label="E-mail" prop="mail">
+          <FormItem label="Status" prop="active">
+            <Select v-model="formValidate.active">
+                <Option value="1">Active</Option>
+                <Option value="0">InActive</Option>
+            </Select>
+        </FormItem>
+        <FormItem label="Role" prop="is_admin">
+            <Select v-model="formValidate.is_admin">
+                <Option value="1">Administrator</Option>
+                <Option value="0">User Normal</Option>
+            </Select>
+        </FormItem>
+          <FormItem label="E-mail" prop="email">
             <Input
-              v-model="formValidate.mail"
+              v-model="formValidate.email"
               placeholder="Enter your e-mail"
             ></Input>
           </FormItem>
-          <FormItem label="Content" prop="content">
+          <FormItem label="Password" prop="password">
             <Input
-              v-model="formValidate.content"
-              type="textarea"
-              :autosize="{ minRows: 2, maxRows: 5 }"
-              placeholder="Enter something..."
+              type="password"
+              password
+              v-model="formValidate.password"
+              placeholder="Enter your password"
+            ></Input>
+          </FormItem>
+          <FormItem label="Re-type Password" prop="password_confirmation">
+            <Input
+              type="password"
+              password
+              v-model="formValidate.password_confirmation"
+              placeholder="Enter your re-type password"
             ></Input>
           </FormItem>
           <FormItem label="Desc" prop="desc">
@@ -114,8 +134,28 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 export default {
   data() {
+    const validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("Please fill in the password"));
+      } else {
+        if (this.formInline.password_confirmation !== "") {
+          this.$refs.formInline.validateField("password_confirmation");
+        }
+        callback();
+      }
+    };
+    const validatePassCheck = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("Please fill in the password again"));
+      } else if (value !== this.formInline.password) {
+        callback(new Error("The two input passwords do not match!"));
+      } else {
+        callback();
+      }
+    };
     return {
       file: null,
       url: null,
@@ -123,13 +163,12 @@ export default {
       formValidate: {
         firstname: "",
         lastname: "",
-        mail: "",
-        city: "",
-        gender: "",
-        interest: [],
-        date: "",
-        content: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
         desc: "",
+        is_admin: "",
+        active: ""
       },
       ruleValidate: {
         firstname: [
@@ -146,7 +185,21 @@ export default {
             trigger: "blur",
           },
         ],
-        mail: [
+        active: [
+          {
+            required: true,
+            message: "The stauts cannot be empty",
+            trigger: "blur",
+          },
+        ],
+        is_admin: [
+          {
+            required: true,
+            message: "The role cannot be empty",
+            trigger: "blur",
+          },
+        ],
+        email: [
           {
             required: true,
             message: "Mailbox cannot be empty",
@@ -154,76 +207,34 @@ export default {
           },
           { type: "email", message: "Incorrect email format", trigger: "blur" },
         ],
-        content: [
+        password: [
           {
+            validator: validatePass,
             required: true,
-            message: "Please enter the content",
-            trigger: "change",
-          },
-        ],
-        gender: [
-          {
-            required: true,
-            message: "Please select gender",
-            trigger: "change",
-          },
-        ],
-        interest: [
-          {
-            required: true,
-            type: "array",
-            min: 1,
-            message: "Choose at least one hobby",
-            trigger: "change",
-          },
-          {
-            type: "array",
-            max: 2,
-            message: "Choose two hobbies at best",
-            trigger: "change",
-          },
-        ],
-        date: [
-          {
-            required: true,
-            type: "date",
-            message: "Please select the date",
-            trigger: "change",
-          },
-        ],
-        time: [
-          {
-            required: true,
-            type: "string",
-            message: "Please select time",
-            trigger: "change",
-          },
-        ],
-        desc: [
-          {
-            required: true,
-            message: "Please enter a personal introduction",
             trigger: "blur",
           },
+        ],
+        password_confirmation: [
           {
-            type: "string",
-            min: 20,
-            message: "Introduce no less than 20 words",
+            validator: validatePassCheck,
             trigger: "blur",
+            required: true,
           },
         ],
       },
     };
   },
   methods: {
+    ...mapActions(["addUsers"]),
     handleSubmit(name) {
-      this.$refs[name].validate((valid) => {
-        if (valid) {
-          this.$Message.success("Success!");
-        } else {
-          this.$Message.error("Fail!");
-        }
-      });
+      // this.$refs[name].validate((valid) => {
+      //   if (valid) {
+      this.addUsers(this.formValidate);
+      //     this.$Message.success("Success!");
+      //   } else {
+      //     this.$Message.error("Fail!");
+      //   }
+      // });
     },
     handleReset(name) {
       this.$refs[name].resetFields();

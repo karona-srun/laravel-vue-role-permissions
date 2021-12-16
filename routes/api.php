@@ -22,25 +22,30 @@ use App\Http\Controllers\API\ResetPasswordController;
 
 
 Route::group([
-    'namespace' => 'App\Http\Controllers\API',
     'prefix' => 'auth'
 ], function () {
-        Route::post('password/email', 'PasswordResetRequestController@forgot');
-        Route::post('password/reset', 'PasswordResetRequestController@reset');
-        // Send reset password mail
-        // Route::post('reset-password', 'PasswordResetRequestController@sendPasswordResetLink');
-        // handle reset password form process
-        // Route::post('reset/password', 'PasswordResetRequestController@callResetPassword');
-    });
-    
+    Route::post('sign-in', 'API\AuthController@login');
+    Route::post('sign-up', 'API\AuthController@register');
+    Route::post('password/email', 'API\PasswordResetRequestController@forgot');
+    Route::post('password/reset', 'API\PasswordResetRequestController@reset');
+});
+ 
 Route::group([
-    'middleware' => 'api',
-    'namespace' => 'App\Http\Controllers\API',
+    'middleware' => 'auth:api',
     'prefix' => 'auth'
 ], function () {
-    Route::post('sign-in', 'AuthController@login');
-    Route::post('sign-up', 'AuthController@register');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'API\AuthController@refresh');
+    Route::post('me', 'API\AuthController@me');
+    Route::post('sign-out', 'API\AuthController@logout');
+});
+
+Route::group([
+    'middleware' => 'auth:api',
+], function () {
+    Route::get('user','API\UsersController@index');
+    Route::post('user','API\UsersController@store');
+    Route::post('user-livesearch', 'API\UsersController@liveSearch');
+    Route::get('user/{id}','API\UsersController@show');
+    Route::patch('user/{id}','API\UsersController@update');
+    Route::delete('user/{id}','API\UsersController@destroy');
 });

@@ -54,7 +54,7 @@
         </FormItem>
         <FormItem>
           <Button type="primary" long @click="handleSubmit('formInline')"
-            >Signin</Button
+            >Sign Up</Button
           >
           <Divider plain>Or</Divider>
           <Button type="primary" long @click="handleGoBack">Go Back</Button>

@@ -20,11 +20,11 @@
       <Panel name="1">
         Filter
         <p slot="content">
-          <Form :model="formTop">
+          <Form>
             <Row :gutter="32">
                 <Col :sm="12" :md="8" :lg="6">
                     <FormItem label="SELECT ITEMS" label-position="top">
-                      <Select v-model="formTop.selectItems" prefix="md-funnel">
+                      <Select v-model="selectItems" prefix="md-funnel">
                         <Option value="10">10</Option>
                         <Option value="20">20</Option>
                         <Option value="30">30</Option>
@@ -37,7 +37,9 @@
                     <FormItem label="SEARCH" label-position="top">
                         <Input
                           suffix="ios-search"
-                          v-model="formTop.search"
+                          type="text"
+                          v-model="keywords"
+                          clearable
                           placeholder="Search"
                         ></Input>
                     </FormItem>
@@ -46,7 +48,7 @@
                     <FormItem label="FILTER DATE" label-position="top">
                       <DatePicker
                         type="daterange"
-                        v-model="formTop.daterange"
+                        v-model="daterange"
                         placement="bottom-end"
                         format="dd-MM-yyyy"
                         placeholder="Filter Date"
@@ -54,25 +56,17 @@
                       ></DatePicker>
                     </FormItem>
                 </Col>
-                <Col :sm="12" :md="8" :lg="6">
-                    <FormItem label="ACTIONS" label-position="top"><br>
-                      <Button @click="instance('info')">Info</Button>
-                      <Button @click="instance('success')">Success</Button>
-                      <Button @click="instance('warning')">Warning</Button>
-                      <Button @click="instance('error')">Error</Button>
-                    </FormItem>
-                </Col>
             </Row>
           </Form>
         </p>
       </Panel>
     </Collapse>
-    <div style="padding-top: 10px" v-for="(item, i) in data" :key="i">
+    <div style="padding-top: 10px" v-for="(item, i) in usersList" :key="i">
       <Card :bordered="false">
         <div slot="title">
-          <a :href="'users/user-detail/' + i" slot="extra">
-            <img :src="item.avatar" class="avatar" alt="avatar" />
-            <span class="title">{{ item.fullName }}</span>
+          <a :href="'users/user-detail/' + item.id" slot="extra">
+            <img :src="item.avatar == '' || item.avatar == null ? avatarFake : item.avatar" class="avatar" alt="avatar" />
+            <span class="title">{{ item.full_name }}</span>
           </a>
         </div>
         <Row :gutter="32">
@@ -81,14 +75,21 @@
             <p>{{ item.email }}</p>
           </Col>
           <Col :sm="32" :md="10" :lg="8">
-          <p :style="pStyle">Content</p>
-            <p>{{ item.content }}</p>
-            </Col>
+            <p :style="pStyle">Status</p>
+            <Button type="success" shape="circle" v-if="item.active === 0">InActive</Button>
+            <Button type="success" shape="circle" v-else>Active</Button>
+          </Col>
+          <Col :sm="32" :md="10" :lg="8">
+            <p :style="pStyle">Role</p>
+            <Button type="success" shape="circle" v-if="item.is_admin === 0">User Normal</Button>
+            <Button type="success" shape="circle" v-else>Administrator</Button>
+          </Col>
           <Col :sm="32" :md="10" :lg="8">
           <p :style="pStyle">Description</p>
-            <p>{{ item.description }}</p>
+            <p>{{ item.desc }}</p>
           </Col>
         </Row>
+        <br>
         <Row :gutter="32">
           <Col :sm="12" :md="8" :lg="6">
             <p :style="pStyle">Created At</p>
@@ -112,6 +113,7 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex';
 export default {
   data() {
     return {
@@ -123,62 +125,36 @@ export default {
         display: 'block',
         marginBottom: '5px'
       },
-      formTop: {
-        selectItems: "",
-        search: "",
-        daterange: "",
-      },
-      data: [
-        {
-          email: "email@example.com",
-          fullName: "Karona Srun",
-          created_at: "02-11-2021 10:10 AM",
-          updated_at: "02-11-2021 11:10 AM",
-          created_by: "Karona Sophea",
-          updated_by: "Karona Amera",
-          description:
-            "This is description, this is description, this is description.",
-          avatar:
+      selectItems: "",
+      keywords: null,
+      daterange: "",
+      avatarFake:
             "https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar",
-          content:
-            "This is the content, this is the content, this is the content, this is the content.",
-        },
-        {
-          email: "email@example.com",
-          fullName: "Karona Srun",
-          created_at: "02-11-2021 10:10 AM",
-          updated_at: "02-11-2021 11:10 AM",
-          created_by: "Karona Sophea",
-          updated_by: "Karona Amera",
-          description:
-            "This is description, this is description, this is description.",
-          avatar:
-            "https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar",
-          content:
-            "This is the content, this is the content, this is the content, this is the content.",
-        },
-        {
-          email: "email@example.com",
-          fullName: "Karona Srun",
-          created_at: "02-11-2021 10:10 AM",
-          updated_at: "02-11-2021 11:10 AM",
-          created_by: "Karona Sophea",
-          updated_by: "Karona Amera",
-          description:
-            "This is description, this is description, this is description.",
-          avatar:
-            "https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar",
-          content:
-            "This is the content, this is the content, this is the content, this is the content.",
-        },
-      ],
     };
   },
-  methods: {
-    instance(info) {
-      alert(info);
-    },
+  watch: {
+      keywords(after, before) {
+          this.getResults();
+      }
   },
+  methods: {
+    ...mapActions(["fetchUsers", "deleteUser", "liveSearch"]),
+    getResults() {
+      const data = {
+        keywords: this.keywords
+      };
+      const response = this.liveSearch(data)
+      response.then(res => {
+          this.usersList = res.users
+          console.log(res)
+        })
+        .catch(error => {});
+    }
+  },
+  computed: mapGetters(["usersList"]),
+  created() {
+    this.fetchUsers()
+  }
 };
 </script>
 <style>

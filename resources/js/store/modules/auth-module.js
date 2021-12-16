@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Header } from 'view-design';
+import Header from '../../api/header';
 
 const state = {
     userdata: [],
@@ -26,9 +26,9 @@ const actions = {
             password: data.password
         })
         .then(response => {
-            console.info('🚀 '+ JSON.stringify(response.data.access_token))
             // localStorage.setItem("accessToken",response.access_token)
             localStorage.setItem("accessToken",JSON.stringify(response.data.access_token))
+            // localStorage.setItem("authID",JSON.stringify(response.data.user.id))
             commit('signin', response.data);
             return response.data;
         }).catch(function (error){
@@ -53,16 +53,16 @@ const actions = {
         })
     
     },
-    signOut({ commit }) {
-        // return axios.post('/api/auth/sign-out')
-        // .then(response => {
-            // console.info('🚀 '+ JSON.stringify(response.data))
+    async signOut({ commit }) {
+        return await axios.post('/api/auth/sign-out', { headers: Header.responseHeaders() })
+        .then((response) => {
+            console.info('🚀 '+ JSON.stringify(response.data))
             localStorage.removeItem("accessToken")
             commit('signin', '');
-            return "response.data";
-        // }).catch(function (error){
-        //     return error;
-        // });
+            return response.data;
+        }).catch(function (error){
+            return error;
+        });
     
     },
     forgotpassword({ commit }, email) {
