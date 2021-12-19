@@ -5631,14 +5631,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         title: "Sign Out",
         content: "<p>Do you want to sign out now?</p>",
         onOk: function onOk() {
-          var response = _this.signOut();
+          _this.signOut();
 
-          response.then(function (response) {
-            console.log(response);
-
-            _this.$router.push({
-              path: "/sign-in"
-            });
+          _this.$nextTick(function () {
+            _this.$router.go();
           });
         },
         onCancel: function onCancel() {
@@ -8153,28 +8149,18 @@ var actions = {
   },
   signOut: function signOut(_ref3) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var commit;
+      var commit, token;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               commit = _ref3.commit;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/auth/sign-out', {
-                headers: _api_header__WEBPACK_IMPORTED_MODULE_2__["default"].responseHeaders()
-              }).then(function (response) {
-                console.info('🚀 ' + JSON.stringify(response.data));
-                localStorage.removeItem("accessToken");
-                commit('signin', '');
-                return response.data;
-              })["catch"](function (error) {
-                return error;
-              });
+              token = null;
+              localStorage.removeItem("accessToken");
+              _context.next = 5;
+              return commit('signin', token);
 
-            case 3:
-              return _context.abrupt("return", _context.sent);
-
-            case 4:
+            case 5:
             case "end":
               return _context.stop();
           }

@@ -126,11 +126,10 @@ export default {
         title: "Sign Out",
         content: "<p>Do you want to sign out now?</p>",
         onOk: () => {
-          const response = this.signOut();
-          response.then((response) => {
-            console.log(response)
-            this.$router.push({ path:"/sign-in" });
-          })
+          this.signOut();
+          this.$nextTick(() => {
+            this.$router.go();
+          });
         },
         onCancel: () => {
           this.$Message.info("Clicked cancel");

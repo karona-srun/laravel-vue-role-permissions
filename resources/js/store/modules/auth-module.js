@@ -54,15 +54,9 @@ const actions = {
     
     },
     async signOut({ commit }) {
-        return await axios.post('/api/auth/sign-out', { headers: Header.responseHeaders() })
-        .then((response) => {
-            console.info('🚀 '+ JSON.stringify(response.data))
-            localStorage.removeItem("accessToken")
-            commit('signin', '');
-            return response.data;
-        }).catch(function (error){
-            return error;
-        });
+        let token = null
+        localStorage.removeItem("accessToken");
+        await commit('signin', token)
     
     },
     forgotpassword({ commit }, email) {
