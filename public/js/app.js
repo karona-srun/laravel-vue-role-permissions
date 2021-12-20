@@ -6909,7 +6909,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.addUsers(this.formValidate);
       this.$router.push({
         path: '/users'
-      }); //     this.$Message.success("Success!");
+      });
+      this.$router.go(); //     this.$Message.success("Success!");
       //   } else {
       //     this.$Message.error("Fail!");
       //   }
