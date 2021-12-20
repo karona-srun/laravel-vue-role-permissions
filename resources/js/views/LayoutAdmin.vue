@@ -36,12 +36,12 @@
                 <span>Users</span>
               </Tooltip>
             </MenuItem>
-            <MenuItem name="1-3" to="/roles">
+            <!-- <MenuItem name="1-3" to="/roles">
               <Tooltip content="Role & Permissions" placement="right">
                 <Icon type="ios-settings" size="20"></Icon>
                 <span>Role & Permissions</span>
               </Tooltip>
-            </MenuItem>
+            </MenuItem> -->
           </Submenu>
         </Menu>
       </Sider>
