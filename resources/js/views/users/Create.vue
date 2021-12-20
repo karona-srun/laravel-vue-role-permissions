@@ -230,7 +230,9 @@ export default {
       // this.$refs[name].validate((valid) => {
       //   if (valid) {
       this.addUsers(this.formValidate);
-      this.$router.push({ path:'/users' })
+      this.$router.push({ path:'/users' });
+      this.$router.go();
+
       //     this.$Message.success("Success!");
       //   } else {
       //     this.$Message.error("Fail!");
