@@ -63070,31 +63070,6 @@ var render = function() {
                           )
                         ],
                         1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "MenuItem",
-                        { attrs: { name: "1-3", to: "/roles" } },
-                        [
-                          _c(
-                            "Tooltip",
-                            {
-                              attrs: {
-                                content: "Role & Permissions",
-                                placement: "right"
-                              }
-                            },
-                            [
-                              _c("Icon", {
-                                attrs: { type: "ios-settings", size: "20" }
-                              }),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("Role & Permissions")])
-                            ],
-                            1
-                          )
-                        ],
-                        1
                       )
                     ],
                     2
